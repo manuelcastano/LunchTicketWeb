@@ -1,0 +1,27 @@
+#loginContainer{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 0 auto;
+    height: 500px;
+    justify-content: center;
+}
+
+#loginContainer input{
+    border-radius: 9px;
+    border-width: 1px;
+    height: 25px;
+}
+
+#logo{
+    width: 200px;
+    margin: 0 auto;
+}
+
+#loginButton{
+    height: 35px;
+    border-width: 0px;
+    border-radius: 12px;
+    background-color: #00D16D;
+    color: white;
+}
