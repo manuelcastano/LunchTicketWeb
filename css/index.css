@@ -25,3 +25,8 @@
     background-color: #00D16D;
     color: white;
 }
+
+#badLogin{
+    color: red;
+    text-align: center;
+}
