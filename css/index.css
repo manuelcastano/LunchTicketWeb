@@ -1,9 +1,9 @@
 #loginContainer{
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 20%;
     margin: 0 auto;
-    height: 500px;
+    height: 95vh;
     justify-content: center;
 }
 

@@ -26,9 +26,6 @@ const login = ()=>{
         } else if (xhr.readyState == 4){
             badLogin.style.visibility = 'visible';
         }
-        //verificamos si el inicio de sesión fue válido,
-        //de ser así, pasamos a la página de home,
-        //por el contrario, mostramos el mensaje de credenciales invalidas
     });
     xhr.open('POST', AUTH_URL);
     xhr.setRequestHeader('Content-Type', 'application/json');
