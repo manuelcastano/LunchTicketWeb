@@ -1,28 +1,24 @@
+import {BASE_URL, AUTH_URL} from './constants.js';
+import {helloworld, getTokenPayload} from './tokenUtil.js';
+
 //Referencias
 const inputCedula = document.getElementById('inputCedula');
 const inputContrasena = document.getElementById('inputContrasena');
 const loginButton = document.getElementById('loginButton');
 const badLogin = document.getElementById('badLogin');
-const BASE_URL = "http://6.tcp.ngrok.io:16584/lunchticket";
-const AUTH_URL = "https://pi2sis.icesi.edu.co/saamfiapi/public/institutions/1/systems/4/users/login";
+
+console.log(BASE_URL);
+
+helloworld();
+
 
 badLogin.style.visibility = 'hidden';
 
-goToHome = ()=>{
+const goToHome = ()=>{
     //window.location.href = 'home.html';
 }
 
-const getTokenPayload = token => {
-    const parts = token
-      .split('.')
-      .map(part =>
-        Buffer.from(
-          part.replace(/-/g, '+').replace(/_/g, '/'),
-          'base64',
-        ).toString(),
-      );
-    return JSON.parse(parts[1]);
-  };
+
 
 const login = ()=>{
     let userObj = {
