@@ -9,8 +9,20 @@ const AUTH_URL = "https://pi2sis.icesi.edu.co/saamfiapi/public/institutions/1/sy
 badLogin.style.visibility = 'hidden';
 
 goToHome = ()=>{
-    window.location.href = 'home.html';
+    //window.location.href = 'home.html';
 }
+
+const getTokenPayload = token => {
+    const parts = token
+      .split('.')
+      .map(part =>
+        Buffer.from(
+          part.replace(/-/g, '+').replace(/_/g, '/'),
+          'base64',
+        ).toString(),
+      );
+    return JSON.parse(parts[1]);
+  };
 
 const login = ()=>{
     let userObj = {
