@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import logo from './applogo.png';
+import React from 'react';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="Login">
+      <img id="logo" src={logo}/>
+      <p>Cédula</p>
+      <input id="inputCedula" type="text" placeholder="Número de cédula"/>
+      <p>Contraseña de banner</p>
+      <input id="inputContrasena" type="password" placeholder="Contraseña"/>
+      <br/>
+      <button id="loginButton">Iniciar sesión</button>
+      <br/>
+      <pr id="badLogin" >Credenciales incorrectas</pr>
     </div>
   );
 }
