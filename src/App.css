@@ -1,6 +1,24 @@
 
+.dflex{
+  display: flex ;
 
 
+}
+
+.dflex2{
+  flex: 1 1 auto;
+  display: flex;
+  height: 100vh;
+ 
+
+}
+.dflex3{
+flex: 1 1 auto;
+display: flex;
+flex-flow: column;
+height: 100vh;
+overflow-y: hidden;
+}
 
 .Login {
   display: flex;
