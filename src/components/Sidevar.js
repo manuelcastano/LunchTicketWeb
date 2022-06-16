@@ -8,8 +8,6 @@ import {
   CDBSidebarMenuItem,
 } from 'cdbreact';
 import { NavLink,Outlet } from 'react-router-dom';
-import Home from '../pages/Home'
-
 
 const Sidebar = () => {
     return (
@@ -18,7 +16,7 @@ const Sidebar = () => {
         <CDBSidebar textColor="#fff" backgroundColor="#333">
           <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
             <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
-              OAFI
+              OAF
             </a>
           </CDBSidebarHeader>
   

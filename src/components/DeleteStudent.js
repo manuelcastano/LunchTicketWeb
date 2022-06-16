@@ -10,13 +10,14 @@ const card = (
   <React.Fragment >
     <CardContent >
     <TextField id="standard-basic" label="Codigo del estudiante" variant="standard" />
+      
     </CardContent>
     <CardActions>
-      <Button size="small">Buscar</Button>
+      <Button size="small">Eliminar</Button>
     </CardActions>
   </React.Fragment>
 );
-export default function AddStudent() {
+export default function DeleteStudent() {
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card variant="outlined">{card}</Card>
