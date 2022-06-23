@@ -25,7 +25,7 @@ const Sidebar = () => {
               <NavLink  to="/" activeClassName="activeClicked">
                 <CDBSidebarMenuItem icon="columns">Estudiantes</CDBSidebarMenuItem>
               </NavLink>
-              <NavLink exact to="/Cafeteria" activeClassName="activeClicked">
+              <NavLink exact to="/restaurant" activeClassName="activeClicked">
                 <CDBSidebarMenuItem icon="table">Cafeterias</CDBSidebarMenuItem>
                 
         

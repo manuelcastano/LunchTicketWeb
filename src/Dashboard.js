@@ -14,7 +14,7 @@ function Dashboard() {
         <Sidebar/> 
         <Routes>
               <Route exact={true} path="/"  element={< StudentHome/>} />      
-              <Route exact={true} path="/"  element={< RestaurantHome/>} />        
+              <Route exact={true} path="/restaurant"  element={< RestaurantHome/>} />        
         </Routes>  
         </Router>
   </div>
