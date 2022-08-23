@@ -44,25 +44,58 @@ function App() {
 
       if (!response.ok) {
         throw new Error(`Error! status: ${response.status}`);
+      }else{
+        const result = await response.json();
+
+        console.log("result is: ", result);
+        let json = JSON.stringify(result);
+        console.log(json);
+
+        const postResult = await fetch(
+          "http://2.tcp.ngrok.io:19068/lunchticket",
+          {
+            method: "POST",
+            headers: {
+              Accept: 
+              "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(
+              result
+            )
+          }
+        );
+        if (!postResult.ok) {
+          throw new Error(`Error! status: ${response.status}`);
+        }else{
+          //Recibir el usuario con un array que contenga sus roles
+          //Cambiar la página con route de acuerdo al rol que tenga 
+          const backResponse = await postResult.json();
+
+          console.log("result is: ", result);
+          let json = JSON.stringify(result);
+          console.log(json);
+  
+
+        }
+  
+        //Destructuring del objeto. Saco estos atributos
+        //const { persName, persLastname, persIddocument } = result;
+  
+        //Creo un objeto con dichos atributos
+        /*const out = {
+          persName,
+          persLastname,
+          persIddocument,
+        };*/
+  
+        //Falta hacer un POST al BACKEND
+        // A la tabla de usuarios
+  
+        
+        
+        setData(result);
       }
-
-      const result = await response.json();
-
-      console.log("result is: ", result);
-
-      //Destructuring del objeto. Saco estos atributos
-      const { persName, persLastname, persIddocument } = result;
-
-      //Creo un objeto con dichos atributos
-      const out = {
-        persName,
-        persLastname,
-        persIddocument,
-      };
-
-      //Falta hacer un POST al BACKEND
-      
-      setData(result);
     } catch (err) {
       setErr(err.message);
     } finally {
