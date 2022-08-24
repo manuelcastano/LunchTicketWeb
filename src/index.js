@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import Dashboard from './Dashboard'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {BrowserRouter as Router} from 'react-router-dom';
+import Login from './pages/Login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    //<App />,
-    <App />,
-    document.getElementById('root')
+    <Router>
+    <App />
+    </Router>
 );

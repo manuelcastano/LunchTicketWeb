@@ -5,6 +5,7 @@ import StudentHome from './pages/StudentHome'
 import './App.css'
 import { Routes } from 'react-router-dom';
 import RestaurantHome from './pages/RestaurantHome';
+import NotAllowed from './pages/NotAllowed'
 
 function Dashboard() {
   return (
@@ -14,7 +15,8 @@ function Dashboard() {
         <Sidebar/> 
         <Routes>
               <Route exact={true} path="/"  element={< StudentHome/>} />      
-              <Route exact={true} path="/restaurant"  element={< RestaurantHome/>} />        
+              <Route exact={true} path="/restaurant"  element={< RestaurantHome/>} />    
+              <Route exact={true} path="/notAllowed"  element={< NotAllowed/>} />       
         </Routes>  
         </Router>
   </div>

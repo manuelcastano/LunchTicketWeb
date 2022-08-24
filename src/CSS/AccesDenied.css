@@ -1,0 +1,17 @@
+body{
+    background-color: black;
+    color: white;
+    }
+    
+    h1 {
+    color: black;
+    font-style: oblique;
+    text-align: center;
+    }
+    
+    h6{
+    color: red;
+    text-decoration: dotted;
+    text-align: center;
+    }
+    
