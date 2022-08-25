@@ -1,7 +1,6 @@
 import React from "react";
-import "../CSS/AccesDenied.css";
+import "../css/AccesDenied.css";
 const NotAllowed = () => {
-  console.log("HOLAAAAA");
   return (
     <div>
       <h1>Acceso denegado</h1>

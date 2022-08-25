@@ -1,13 +1,12 @@
 import React from "react";
 import Logo from "../imgs/logo.png";
-import "../App.css"
+import "../App.css";
 import { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const [allowed, setAllowed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
 
@@ -26,11 +25,12 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const navigateTo = () => {
-    if (allowed) {
-    } else {
-      navigate("/notAllowed", { replace: true });
-    }
+  const navigateApproved = () => {
+    navigate("/dashboard", { replace: true });
+  };
+
+  const navigateDenied = () => {
+    navigate("/notAllowed", { replace: true });
   };
 
   const handleClick = async () => {
@@ -63,7 +63,7 @@ function Login() {
         console.log(json);
 
         const postResult = await fetch(
-          "http://2.tcp.ngrok.io:12535/lunchticket/login",
+          "http://6.tcp.ngrok.io:19026/lunchticket/login",
           {
             method: "POST",
             headers: {
@@ -81,20 +81,22 @@ function Login() {
           const backResponse = await postResult.json();
 
           console.log("backResponse is: ", backResponse);
-          let json = JSON.stringify(backResponse);
-          console.log(json);
-          let role = JSON.parse(json);
-          var found = false;
-          console.log(role);
-          if (role.length == 0) {
-            setAllowed(false);
-            navigateTo();
+
+          if (backResponse.length === 0) {
+            navigateDenied();
           } else {
-            /*for(i=0;i<role.lenght && !found;i++){
-              if(role[i] == ""){
-  
+            let approved = false;
+            for (let i = 0; i < backResponse.length && !approved; i++) {
+              console.log(backResponse[i].id === 3);
+              if (backResponse[i].id === 3) {
+                approved = true;
               }
-            }*/
+            }
+            if(approved){
+              navigateApproved();
+            }else{
+              navigateDenied();
+            }
           }
         }
 

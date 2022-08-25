@@ -6,7 +6,7 @@ import "../App.css"
 import { useState } from 'react';
 import AddStudent from '../components/AddStudent';
 import DeleteStudent from '../components/DeleteStudent';
-
+import Sidebar from "../components/Sidebar";
 
 const StudentHome =() => {
      const [value,setValue]= useState(0)
@@ -25,12 +25,14 @@ const StudentHome =() => {
                 <Tab label = "Eliminar Estudiante"/>
             </Tabs>
         </Box>
+      
         <TabPanel value={value} index={0}>
          <br/> 
          <div style={{justifyContent: 'center',alignItems: 'center', display: 'flex'}}>
             <AddStudent/>
         </div>
         </TabPanel>
+        <Sidebar /> {/**AQUI TENEMOS EL PROBLEMA DE COMPONENTES */}
 
         <TabPanel value={value} index={1}>
         <br/> 
