@@ -3,15 +3,43 @@ import Logo from "../imgs/logo.png";
 import "../App.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import StudentHome from "./StudentHome";
+import RestaurantHome from "./RestaurantHome";
+import { Dashboard } from "@mui/icons-material";
+import NotAllowed from "./NotAllowed";
 
 function Login() {
-  const navigate = useNavigate();
+
+  let account = JSON.parse(localStorage.getItem("account"));
+
+  if (account != null) {
+    //console.log(account.user.persName);
+    const rolesAllowed = account.roles.find(
+      (roles) => roles.id === 3 || roles.id === 4
+    );
+    if (rolesAllowed != null) {
+      //console.log("dentro de allowed");
+      window.location.href = "/dashboard";
+    } else {
+      window.location.href = "/notAllowed";
+    }
+    return;
+  }
 
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState("");
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+  const navigateApproved = () => {
+    navigate("/dashboard", { replace: true });
+  };
+
+  const navigateDenied = () => {
+    navigate("/notAllowed", { replace: true });
+  };
 
   const onUser = (event) => {
     setUsername(event.target.value);
@@ -25,13 +53,6 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const navigateApproved = () => {
-    navigate("/dashboard", { replace: true });
-  };
-
-  const navigateDenied = () => {
-    navigate("/notAllowed", { replace: true });
-  };
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -63,7 +84,7 @@ function Login() {
         console.log(json);
 
         const postResult = await fetch(
-          "http://6.tcp.ngrok.io:19026/lunchticket/login",
+          "http://0.tcp.ngrok.io:16541/lunchticket/login",
           {
             method: "POST",
             headers: {
@@ -82,19 +103,21 @@ function Login() {
 
           console.log("backResponse is: ", backResponse);
 
+          let account = {
+            user: result,
+            roles: backResponse,
+          };
+          localStorage.setItem("account", JSON.stringify(account));
+
           if (backResponse.length === 0) {
             navigateDenied();
           } else {
-            let approved = false;
-            for (let i = 0; i < backResponse.length && !approved; i++) {
-              console.log(backResponse[i].id === 3);
-              if (backResponse[i].id === 3) {
-                approved = true;
-              }
-            }
-            if(approved){
+            const rolesAllowed = backResponse.find(
+              (roles) => roles.id === 3 || roles.id === 4
+            );
+            if (rolesAllowed != null) {
               navigateApproved();
-            }else{
+            } else {
               navigateDenied();
             }
           }
@@ -119,6 +142,7 @@ function Login() {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="Login">
       <img src={Logo} />

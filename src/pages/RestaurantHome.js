@@ -5,7 +5,6 @@ import "../App.css";
 import { useState } from "react";
 import AddRestaurant from "../components/AddRestaurant";
 import DeleteRestaurant from "../components/DeleteRestaurant";
-import Sidebar from "../components/Sidebar";
 
 const RestaurantHome = () => {
   const [value, setValue] = useState(0);
@@ -26,7 +25,6 @@ const RestaurantHome = () => {
             <Tab label="Eliminar Restaurante" />
           </Tabs>
         </Box>
-        <Sidebar />
         <TabPanel value={value} index={0}>
           <br />
           <div
