@@ -3,10 +3,7 @@ import Logo from "../imgs/logo.png";
 import "../App.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import StudentHome from "./StudentHome";
-import RestaurantHome from "./RestaurantHome";
-import { Dashboard } from "@mui/icons-material";
-import NotAllowed from "./NotAllowed";
+
 
 function Login() {
 
@@ -84,7 +81,7 @@ function Login() {
         console.log(json);
 
         const postResult = await fetch(
-          "http://0.tcp.ngrok.io:16541/lunchticket/login",
+          "https://f2d9-186-27-157-17.ngrok.io/lunchticket/login",
           {
             method: "POST",
             headers: {
