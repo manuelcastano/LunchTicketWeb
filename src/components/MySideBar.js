@@ -20,6 +20,10 @@ const MySideBar = (props) => {
                 Restaurante
             </button>
 
+            <button onClick={()=>{props.onOption(5)}}>
+                Registrar Restaurante
+            </button>
+
             <button onClick={()=>{onClick()}}>
                 Cerrar Sesión
             </button>

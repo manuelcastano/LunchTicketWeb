@@ -5,6 +5,7 @@ import "./App.css";
 import RestaurantHome from "./pages/RestaurantHome";
 import "./model/Util";
 import NotAllowed from "./pages/NotAllowed";
+import RegisterRestaurant from "./pages/RegisterRestaurant";
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,10 @@ export default class Dashboard extends React.Component {
       return <StudentHome />;
     }else if (this.state.page == 2) {
       return <RestaurantHome />;
+    }else if (this.state.page == 5) {
+      return <RegisterRestaurant />;
     }
+    
   }
 
   componentDidMount() {
