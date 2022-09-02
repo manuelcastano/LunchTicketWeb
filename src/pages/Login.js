@@ -81,7 +81,7 @@ function Login() {
         console.log(json);
 
         const postResult = await fetch(
-          "https://f2d9-186-27-157-17.ngrok.io/lunchticket/login",
+          "https://7989-186-27-157-17.ngrok.io/lunchticket/login",
           {
             method: "POST",
             headers: {
