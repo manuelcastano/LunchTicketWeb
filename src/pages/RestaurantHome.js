@@ -1,10 +1,9 @@
 import React from "react";
-import "../App.css";
 import { Box, Tabs, Tab } from "@mui/material";
-import "../App.css";
 import { useState } from "react";
 import AddRestaurant from "../components/AddRestaurant";
 import DeleteRestaurant from "../components/DeleteRestaurant";
+import AddRestaurantEmployee from "../components/AddRestaurantEmployee";
 
 const RestaurantHome = () => {
   const [value, setValue] = useState(0);
@@ -23,6 +22,7 @@ const RestaurantHome = () => {
           >
             <Tab label="Agregar Restaurante" />
             <Tab label="Eliminar Restaurante" />
+            <Tab label="Agregar Empleado" />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
@@ -48,6 +48,18 @@ const RestaurantHome = () => {
             }}
           >
             <DeleteRestaurant />
+          </div>
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <br />
+          <div
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+            }}
+          >
+            <AddRestaurantEmployee />
           </div>
         </TabPanel>
       </box>

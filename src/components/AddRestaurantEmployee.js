@@ -2,9 +2,9 @@ import React from "react";
 import { Box, Typography} from "@mui/material";
 import SingupForm from "./SingupForm";
 
-export default AddRestaurant;
+export default AddRestaurantEmployee;
 
-function AddRestaurant() {
+function AddRestaurantEmployee() {
 
   return (
     <Box sx={{
@@ -13,9 +13,9 @@ function AddRestaurant() {
       backgroundColor: '#fff',
     }}>
       <Typography variant="h4" sx={{ color:'#999', my:2}}>
-        Registra un restaurante
+        Registra un empleado
       </Typography>
-      <SingupForm proRes={true}/>
+      <SingupForm proRes={false} />
     </Box>
   );
 }

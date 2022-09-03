@@ -1,10 +1,11 @@
 import React from "react";
 import MySideBar from "../src/components/MySideBar";
 import StudentHome from "./pages/StudentHome";
-import "./App.css";
+import "./css/App.css";
 import RestaurantHome from "./pages/RestaurantHome";
-import "./model/Util";
 import NotAllowed from "./pages/NotAllowed";
+import AddRestaurantEmployee from "./components/AddRestaurantEmployee";
+import { Box} from "@mui/material";
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -14,13 +15,15 @@ export default class Dashboard extends React.Component {
   }
 
   content() {
-    if (this.state.page == 0) {
+    if (this.state.page === 0) {
       console.log("Cerrando sesion");
       window.location.href = "/";
-    } else if (this.state.page == 1) {
+    } else if (this.state.page === 1) {
       return <StudentHome />;
-    }else if (this.state.page == 2) {
+    }else if (this.state.page === 2) {
       return <RestaurantHome />;
+    }else if (this.state.page === 4) {
+      return <AddRestaurantEmployee />;
     }
     
   }
@@ -47,14 +50,14 @@ export default class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="dflex">
+      <Box sx={{bgcolor:'#fff', display:'flex' }}>
         <MySideBar
           onOption={(option) => {
             this.setState({ page: option });
           }}
         />
         <div className="dflex2">{this.content()}</div>
-      </div>
+      </Box>
     );
   }
 }

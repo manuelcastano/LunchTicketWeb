@@ -5,7 +5,6 @@ import Login from "./pages/Login";
 import RestaurantHome from './pages/RestaurantHome';
 import StudentHome from './pages/StudentHome'
 import Dashboard from "./Dashboard";
-import Sidebar from '../src/components/Sidebar';
 
 function App() {
 
@@ -13,9 +12,6 @@ function App() {
     <div>
       <Routes>
         <Route index element={<Login />} />
-        <Route path="notAllowed" element={<NotAllowed />} />
-        <Route exact={true} path="/student"  element={< StudentHome/>} />      
-        <Route exact={true} path="/restaurant"  element={< RestaurantHome/>} />  
         <Route exact={true} path="/dashboard"  element={< Dashboard/>} />  
       </Routes>
     </div>

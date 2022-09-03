@@ -1,7 +1,5 @@
 import React from "react";
-import "../App.css";
 import { Box, Tabs, Tab } from "@mui/material";
-import "../App.css";
 import { useState } from "react";
 import AddStudent from "../components/AddStudent";
 import DeleteStudent from "../components/DeleteStudent";

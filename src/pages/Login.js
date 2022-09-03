@@ -1,6 +1,5 @@
 import React from "react";
 import Logo from "../imgs/logo.png";
-import "../App.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -81,7 +80,7 @@ function Login() {
         console.log(json);
 
         const postResult = await fetch(
-          "https://7989-186-27-157-17.ngrok.io/lunchticket/login",
+          "https://2b3a-200-3-193-77.ngrok.io/lunchticket/login",
           {
             method: "POST",
             headers: {

@@ -19,7 +19,7 @@ const MySideBar = (props) => {
             <button onClick={()=>{props.onOption(2)}}>
                 Restaurante
             </button>
-
+            
             <button onClick={()=>{onClick()}}>
                 Cerrar Sesión
             </button>
