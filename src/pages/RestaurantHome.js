@@ -4,6 +4,7 @@ import { useState } from "react";
 import AddRestaurant from "../components/AddRestaurant";
 import DeleteRestaurant from "../components/DeleteRestaurant";
 import AddRestaurantEmployee from "../components/AddRestaurantEmployee";
+import DeleteRestaurantEmployee from "../components/DeleteRestaurantEmployee";
 
 const RestaurantHome = () => {
   const [value, setValue] = useState(0);
@@ -12,7 +13,7 @@ const RestaurantHome = () => {
   };
   return (
     <div className="dflex3">
-      <box>
+      <Box>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}
@@ -23,6 +24,7 @@ const RestaurantHome = () => {
             <Tab label="Agregar Restaurante" />
             <Tab label="Eliminar Restaurante" />
             <Tab label="Agregar Empleado" />
+            <Tab label="Eliminar Empleado" />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
@@ -62,7 +64,19 @@ const RestaurantHome = () => {
             <AddRestaurantEmployee />
           </div>
         </TabPanel>
-      </box>
+        <TabPanel value={value} index={3}>
+          <br />
+          <div
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+            }}
+          >
+            <DeleteRestaurantEmployee />
+          </div>
+        </TabPanel>
+      </Box>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../imgs/logo.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AUTHURL, BASEURL } from "../constants/Constants";
 
 
 function Login() {
@@ -56,7 +57,7 @@ function Login() {
 
     try {
       const response = await fetch(
-        "https://www.icesi.edu.co/uccareapi/auth/institutions/1/authentication/login",
+        AUTHURL,
         {
           method: "POST",
           headers: {
@@ -80,7 +81,7 @@ function Login() {
         console.log(json);
 
         const postResult = await fetch(
-          "https://2b3a-200-3-193-77.ngrok.io/lunchticket/login",
+          BASEURL+"/lunchticket/login",
           {
             method: "POST",
             headers: {

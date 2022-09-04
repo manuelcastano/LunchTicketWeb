@@ -27,7 +27,7 @@ const StudentHome = () => {
   };
   return (
     <div className="dflex3">
-      <box>
+      <Box>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}
@@ -65,7 +65,7 @@ const StudentHome = () => {
             <DeleteStudent />
           </div>
         </TabPanel>
-      </box>
+      </Box>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography} from "@mui/material";
-import SingupForm from "./SingupForm";
+import SignUpFormRest from "./SignUpFormRest";
 
 export default AddRestaurant;
 
@@ -15,7 +15,7 @@ function AddRestaurant() {
       <Typography variant="h4" sx={{ color:'#999', my:2}}>
         Registra un restaurante
       </Typography>
-      <SingupForm proRes={true}/>
+      <SignUpFormRest proRes={true}/>
     </Box>
   );
 }

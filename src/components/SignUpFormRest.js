@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, TextField, Stack } from "@mui/material";
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { useState } from "react";
+import { BASEURL } from "../constants/Constants";
 
 function SingupForm({ proRes }) {
 
@@ -18,7 +19,7 @@ function SingupForm({ proRes }) {
     if(proRes){
       try {
         const response = await fetch(
-          "https://2b3a-200-3-193-77.ngrok.io/lunchticket/addRestaurant",
+          BASEURL+"/lunchticket/addRestaurant",
           {
             method: "POST",
             headers: {
@@ -46,7 +47,7 @@ function SingupForm({ proRes }) {
       console.log("Else")
       try {
         const response = await fetch(
-          "https://2b3a-200-3-193-77.ngrok.io/lunchticket/login",
+          BASEURL+"/lunchticket/login",
           {
             method: "POST",
             headers: {
