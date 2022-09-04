@@ -55,7 +55,6 @@ function SingupForm({ proRes }) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              name: name,
               nit: nit,
               pictureUrl: "",
               persIddocument: employeeId,
@@ -85,6 +84,7 @@ function SingupForm({ proRes }) {
         flexDirection: "column",
         justifyContent: "center",
         alignContent: "center",
+        alignItems: "center"
       }}
     >
       <Box>

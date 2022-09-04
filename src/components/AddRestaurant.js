@@ -12,7 +12,7 @@ function AddRestaurant() {
       height: 500,
       backgroundColor: '#fff',
     }}>
-      <Typography variant="h4" sx={{ color:'#999', my:2}}>
+      <Typography variant="h4" align="center" sx={{ color:'#999', my:2}}>
         Registra un restaurante
       </Typography>
       <SignUpFormRest proRes={true}/>

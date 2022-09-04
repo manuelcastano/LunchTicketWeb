@@ -11,19 +11,24 @@ const NotAllowed = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      minHeight="100vh"
       flexDirection={"column"}
     >
       <Box>
-        <Typography variant="h2">Acceso denegado</Typography>
+        <Typography variant="h1" color={"#BA0606"}>
+          Acceso denegado
+        </Typography>
       </Box>
-      <Box my={10}>
-        <Typography variant="h4">No tienes acceso a esta página</Typography>
+      <Box
+        display="flex"
+        alignItems="center"
+        flexDirection={"column"}
+      >
+        <Typography variant="h2">No tienes acceso a esta página</Typography>
         <Typography variant="h4">
           Comunícate con la Oficina de Apoyo Financiero para más información
         </Typography>
       </Box>
-      <Box>
+      <Box my={10}>
         <Button onClick={onClick}>Cerrar Sesión</Button>
       </Box>
     </Box>
