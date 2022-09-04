@@ -1,23 +1,32 @@
+import { Box, Typography, Button } from "@mui/material";
 import React from "react";
-import "../css/AccesDenied.css";
-import Login from "./Login";
 const NotAllowed = () => {
-
-
   const onClick = () => {
     localStorage.clear();
     window.location.href = "/";
   };
 
   return (
-    <div>
-      <h1>Acceso denegado</h1>
-      <div>
-        <h6>No tienes acceso a esta página</h6>
-        <h6>Comunícate con la Oficina de Apoyo Financiero para más información</h6>
-        <button onClick={onClick}>Cerrar Sesión</button>
-      </div>
-    </div>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+      flexDirection={"column"}
+    >
+      <Box>
+        <Typography variant="h2">Acceso denegado</Typography>
+      </Box>
+      <Box my={10}>
+        <Typography variant="h4">No tienes acceso a esta página</Typography>
+        <Typography variant="h4">
+          Comunícate con la Oficina de Apoyo Financiero para más información
+        </Typography>
+      </Box>
+      <Box>
+        <Button onClick={onClick}>Cerrar Sesión</Button>
+      </Box>
+    </Box>
   );
 };
 export default NotAllowed;

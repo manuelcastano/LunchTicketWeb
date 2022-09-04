@@ -142,7 +142,7 @@ function Login() {
 
   return (
     <div className="Login">
-      <img src={Logo} />
+      <img src={Logo} alt={""} />
       <p>Cédula</p>
       <input onChange={onUser} type="text" placeholder="Número de cédula" />
       <p>Contraseña de banner</p>
@@ -155,7 +155,7 @@ function Login() {
         </p>
       )}
       <br />
-      <button class="btn btn-primary" onClick={handleClick}>
+      <button className="btn btn-primary" onClick={handleClick}>
         Iniciar sesión
       </button>
       <br />

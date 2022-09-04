@@ -1,28 +1,16 @@
 import * as React from "react";
 import { useState } from "react";
-import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
-import {
-  CardActions,
-  Button,
-  Box,
-  TableRow,
-  TableHead,
-  TableContainer,
-  TableCell,
-  TableBody,
-  Table,
-  Paper,
-} from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { BASEURL } from "../constants/Constants";
 
 export default function ResultInfoRestTable({ proRes }) {
   const [name, setName] = useState("");
   const [id, setId] = useState("");
-
-  const [rows, setRows] = useState([]);
+  const [found, setFound] = useState(false);
 
   const handleClick = async () => {
+    setFound(false);
     if (proRes) {
       try {
         const response = await fetch(BASEURL + "/lunchticket/addRestaurant", {
@@ -41,16 +29,12 @@ export default function ResultInfoRestTable({ proRes }) {
         if (!response.ok) {
           throw new Error(`Error! status: ${response.status}`);
         } else {
-          //Aviso de que se creo
-          console.log("agregado");
         }
       } catch (err) {
         console.log(err.message);
       }
     } else {
-      console.log("Else");
       try {
-        console.log("id: " + id);
         const response = await fetch(
           BASEURL + "/lunchticket/getUserByUsername",
           {
@@ -64,21 +48,49 @@ export default function ResultInfoRestTable({ proRes }) {
             }),
           }
         );
-
         if (!response.ok) {
           throw new Error(`Error! status: ${response.status}`);
         } else {
-          //Aviso de que se creo
           const backResponse = await response.json();
-          let json = JSON.stringify(backResponse);
-          console.log("response: " + json);
-          setRows([backResponse]);
+          setFound(true);
+          setName(backResponse.pers_name);
+          setId(backResponse.username);
         }
       } catch (err) {
         console.log(err.message);
+        setName("No se encuentra");
       }
     }
   };
+
+  const Delete = async () =>{
+    let path = BASEURL+"lunchticket";
+    if(proRes){
+      path = path+"/deleteRestaurant"
+    }else{
+      path = path+"/deleteRestaurantEmployee"
+    }
+    try {
+      const response = await fetch(path, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      } else {
+
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 
   return (
     <Box>
@@ -95,13 +107,11 @@ export default function ResultInfoRestTable({ proRes }) {
           Buscar
         </Button>
       </Box>
-
       <Box paddingTop={5}>
         <TextField
           id="standard-read-only-input"
           label="Nombre"
-          defaultValue="   "
-          value={rows[0] && rows[0].pers_name}
+          value={name}
           InputProps={{
             readOnly: true,
           }}
@@ -110,13 +120,19 @@ export default function ResultInfoRestTable({ proRes }) {
         <TextField
           id="standard-read-only-input"
           label="Id"
-          defaultValue="   "
-          value={rows[0] && rows[0].username}
+          value={id}
           InputProps={{
             readOnly: true,
           }}
           variant="standard"
         />
+      </Box>
+      <Box>
+        {found &&
+        <Button onClick={Delete}>
+          Eliminar
+        </Button>
+        }
       </Box>
     </Box>
   );

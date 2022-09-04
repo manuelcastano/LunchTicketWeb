@@ -78,18 +78,6 @@ function SingupForm({ proRes }) {
 
   };
 
-  const [payload, setPayload] = useState({});
-
-  const onInput = (e) => {
-    const value = e.target.value
-    const name = e.target.name
-    console.log(value);
-    setPayload(
-      ...payload,
-      payload[name] = value
-    )
-  }
-
   return (
     <Box
       sx={{
@@ -174,11 +162,6 @@ function SingupForm({ proRes }) {
           alignContent: "center",
         }}
       >
-       {/*<Button variant="contained" disableElevation onClick={()=>{
-          proAdd(payload)
-        }} endIcon={<HowToRegIcon />}>
-          Registrar
-      </Button>*/}
         <Button variant="contained" disableElevation onClick={handleClick} endIcon={<HowToRegIcon />}>
           Registrar
         </Button>
