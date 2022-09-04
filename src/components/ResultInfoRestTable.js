@@ -2,7 +2,18 @@ import * as React from "react";
 import { useState } from "react";
 import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
-import { CardActions, Button, Box, TableRow, TableHead, TableContainer, TableCell, TableBody, Table, Paper} from "@mui/material";
+import {
+  CardActions,
+  Button,
+  Box,
+  TableRow,
+  TableHead,
+  TableContainer,
+  TableCell,
+  TableBody,
+  Table,
+  Paper,
+} from "@mui/material";
 import { BASEURL } from "../constants/Constants";
 
 export default function ResultInfoRestTable({ proRes }) {
@@ -39,7 +50,7 @@ export default function ResultInfoRestTable({ proRes }) {
     } else {
       console.log("Else");
       try {
-        console.log("id: "+ id);
+        console.log("id: " + id);
         const response = await fetch(
           BASEURL + "/lunchticket/getUserByUsername",
           {
@@ -60,8 +71,8 @@ export default function ResultInfoRestTable({ proRes }) {
           //Aviso de que se creo
           const backResponse = await response.json();
           let json = JSON.stringify(backResponse);
-          console.log("response: "+json);
-          setRows();
+          console.log("response: " + json);
+          setRows([backResponse]);
         }
       } catch (err) {
         console.log(err.message);
@@ -71,51 +82,42 @@ export default function ResultInfoRestTable({ proRes }) {
 
   return (
     <Box>
-      <Box sx={{ minWidth: 275 }}>
-        <React.Fragment>
-          <CardContent>
-            <TextField
-              id="standard-basic"
-              label="Nit del restaurante"
-              variant="standard"
-              onChange={(e)=>{
-                setId(e.target.value);
-              }}
-            />
-          </CardContent>
-          <CardActions>
-            <Button size="small" onClick={handleClick}>
-              Buscar
-            </Button>
-          </CardActions>
-        </React.Fragment>
+      <Box>
+        <TextField
+          id="standard-basic"
+          label="Nit del restaurante"
+          variant="standard"
+          onChange={(e) => {
+            setId(e.target.value);
+          }}
+        />
+        <Button size="small" onClick={handleClick}>
+          Buscar
+        </Button>
       </Box>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">Nombre</TableCell>
-              <TableCell align="right">Nit</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+
+      <Box paddingTop={5}>
+        <TextField
+          id="standard-read-only-input"
+          label="Nombre"
+          defaultValue="   "
+          value={rows[0] && rows[0].pers_name}
+          InputProps={{
+            readOnly: true,
+          }}
+          variant="standard"
+        />
+        <TextField
+          id="standard-read-only-input"
+          label="Id"
+          defaultValue="   "
+          value={rows[0] && rows[0].username}
+          InputProps={{
+            readOnly: true,
+          }}
+          variant="standard"
+        />
+      </Box>
     </Box>
   );
 }
