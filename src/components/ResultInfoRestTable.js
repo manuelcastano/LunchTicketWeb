@@ -24,7 +24,7 @@ export default function ResultInfoRestTable({ proRes }) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              nit: id,
+              id: id,
             }),
           }
         );
@@ -52,7 +52,7 @@ export default function ResultInfoRestTable({ proRes }) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              username: id,
+              id: id,
             }),
           }
         );
@@ -86,7 +86,7 @@ export default function ResultInfoRestTable({ proRes }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: id,
+          id: id,
         }),
       });
 

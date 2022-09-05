@@ -12,64 +12,97 @@ function SingupForm({ proRes }) {
   const [employeeId, setEmployeeId] = useState("");
   const [employeePassword, setEmployeePassword] = useState("");
 
+  const [message, setMessage] = useState("");
+
   const [added, setAdded] = useState(false);
 
   const handleClick = async () => {
     setAdded(false);
+    setMessage("");
 
     if (proRes) {
-      try {
-        const response = await fetch(BASEURL + "/lunchticket/addRestaurant", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: name,
-            nit: nit,
-            pictureUrl: "",
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error(`Error! status: ${response.status}`);
-        } else {
-          //Aviso de que se creo
-          setAdded(true);
-        }
-      } catch (err) {
-        console.log(err.message);
-      }
-    } else {
-      console.log("Else");
-      try {
-        const response = await fetch(
-          BASEURL + "/lunchticket/addRestaurantEmployee",
-          {
+      if (!(name === "" || nit === "")) {
+        try {
+          const response = await fetch(BASEURL + "/lunchticket/addRestaurant", {
             method: "POST",
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
+              name: name,
               nit: nit,
-              name: employeeName,
-              lastName: employeeLastName,
-              document: employeeId,
-              password: employeePassword,
+              pictureUrl: "",
             }),
-          }
-        );
+          });
 
-        if (!response.ok) {
-          throw new Error(`Error! status: ${response.status}`);
-        } else {
-          //Aviso de que se creo
-          setAdded(true);
+          if (!response.ok) {
+            throw new Error(`Error! status: ${response.status}`);
+          } else {
+            const backResponse = await response.json();
+            if (backResponse) {
+              //Aviso de que se creo
+              setAdded(true);
+              setMessage("Agregado éxitosamente");
+            } else {
+              console.log(backResponse);
+            }
+          }
+        } catch (err) {
+          console.log(err.message);
         }
-      } catch (err) {
-        console.log(err.message);
+      } else {
+        setMessage("Por favor llena todos los campos");
+      }
+    } else {
+      if (
+        !(
+          name === "" ||
+          nit === "" ||
+          employeeLastName === "" ||
+          employeeId === "" ||
+          employeeName ||
+          employeePassword === ""
+        )
+      ) {
+        try {
+          const response = await fetch(
+            BASEURL + "/lunchticket/addRestaurantEmployee",
+            {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                nit: nit,
+                name: employeeName,
+                lastName: employeeLastName,
+                document: employeeId,
+                password: employeePassword,
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(`Error! status: ${response.status}`);
+          } else {
+            const backResponse = await response.json();
+            console.log(backResponse.response);
+            if (backResponse.response) {
+              //Aviso de que se creo
+              setAdded(true);
+              setMessage("Agregado éxitosamente");
+            } else {
+              setMessage("No se pudo agregar");
+              setAdded(false);
+            }
+          }
+        } catch (err) {
+          console.log(err.message);
+        }
+      } else{
+        setMessage("Por favor llena todos los campos");
       }
     }
   };
@@ -179,10 +212,14 @@ function SingupForm({ proRes }) {
         >
           Registrar
         </Button>
-        {added && (
+        {added ? (
           <Typography my={5} variant="subtitle1" color={"#BA0606"}>
-          Agregado éxitosamente
-        </Typography>
+            {message}
+          </Typography>
+        ) : (
+          <Typography my={5} variant="subtitle1" color={"#BA0606"}>
+            {message}
+          </Typography>
         )}
       </Stack>
     </Box>
