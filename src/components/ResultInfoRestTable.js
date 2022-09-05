@@ -1,37 +1,45 @@
 import * as React from "react";
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { Button, Box } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
 import { BASEURL } from "../constants/Constants";
 
 export default function ResultInfoRestTable({ proRes }) {
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [found, setFound] = useState(false);
+  const [deleted, setDeleted] = useState(false);
 
   const handleClick = async () => {
+    setDeleted(false);
     setFound(false);
     if (proRes) {
       try {
-        const response = await fetch(BASEURL + "/lunchticket/addRestaurant", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: name,
-            nit: id,
-            pictureUrl: "",
-          }),
-        });
+        const response = await fetch(
+          BASEURL + "/lunchticket/getRestaurantByNit",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              nit: id,
+            }),
+          }
+        );
 
         if (!response.ok) {
           throw new Error(`Error! status: ${response.status}`);
         } else {
+          const backResponse = await response.json();
+          setFound(true);
+          setName(backResponse.name);
+          setId(backResponse.nit);
         }
       } catch (err) {
         console.log(err.message);
+        setName("No se encuentra");
       }
     } else {
       try {
@@ -63,12 +71,12 @@ export default function ResultInfoRestTable({ proRes }) {
     }
   };
 
-  const Delete = async () =>{
-    let path = BASEURL+"lunchticket";
-    if(proRes){
-      path = path+"/deleteRestaurant"
-    }else{
-      path = path+"/deleteRestaurantEmployee"
+  const Delete = async () => {
+    let path = BASEURL + "/lunchticket";
+    if (proRes) {
+      path = path + "/deleteRestaurant";
+    } else {
+      path = path + "/deleteRestaurantEmployee";
     }
     try {
       const response = await fetch(path, {
@@ -78,31 +86,45 @@ export default function ResultInfoRestTable({ proRes }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: id
+          username: id,
         }),
       });
 
       if (!response.ok) {
         throw new Error(`Error! status: ${response.status}`);
       } else {
-
+        setName("");
+        setId("");
+        setDeleted(true);
       }
     } catch (err) {
       console.log(err.message);
     }
-  }
+  };
 
   return (
     <Box>
       <Box>
-        <TextField
-          id="standard-basic"
-          label="Nit del restaurante"
-          variant="standard"
-          onChange={(e) => {
-            setId(e.target.value);
-          }}
-        />
+        {proRes ? (
+          <TextField
+            id="standard-basic"
+            label="Nit del restaurante"
+            variant="standard"
+            onChange={(e) => {
+              setId(e.target.value);
+            }}
+          />
+        ) : (
+          <TextField
+            id="standard-basic"
+            label="Id del empleado"
+            variant="standard"
+            onChange={(e) => {
+              setId(e.target.value);
+            }}
+          />
+        )}
+
         <Button size="small" onClick={handleClick}>
           Buscar
         </Button>
@@ -128,10 +150,13 @@ export default function ResultInfoRestTable({ proRes }) {
         />
       </Box>
       <Box>
-        {found &&
-        <Button onClick={Delete}>
-          Eliminar
-        </Button>
+        {found && !deleted && <Button onClick={Delete}>Eliminar</Button>}
+      </Box>
+      <Box>
+        {deleted &&
+        <Typography my={5} variant="subtitle1" color={"#BA0606"}>
+          Eliminado éxitosamente
+        </Typography>
         }
       </Box>
     </Box>
