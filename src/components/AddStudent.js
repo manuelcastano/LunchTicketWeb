@@ -1,11 +1,10 @@
 
-
-
 import * as React from 'react';
 import { useState } from "react";
 import { Box, Button, TextField, Stack } from "@mui/material";
 import HowToRegIcon from '@mui/icons-material/HowToReg';
-
+import { BASEURL } from '../constants/Constants';
+import MenuItem from '@mui/material/MenuItem';
 
 
 export default function AddStudent() {
@@ -15,10 +14,58 @@ export default function AddStudent() {
   const[name, setName] = useState("");
   const[lastname, setLastName] = useState("");
 
-  const handleClick = async () => {
+  const [currency, setCurrency] = React.useState("");
+  const [scholarships, setScholarships] = React.useState([]);
 
-    
+
+  const handleChange = (event) => {
+    setCurrency(event.target.value);
   };
+
+  React.useEffect(()=>{
+    listScholarships()
+    console.log("oee " +scholarships.name)
+  },[]);
+
+  const listScholarships = async () => { 
+  const becas = await fetch(
+    BASEURL+"/lunchticket/scholarships",
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }
+    }
+  ); if (!becas.ok) {
+    throw new Error(`Error! status: ${becas.status}`);
+  } else {
+    const tiposbecas = await becas.json();
+    setScholarships(tiposbecas);
+}
+}
+
+const onAddStd = async () => {
+
+
+  const becas = await fetch(
+    BASEURL+"/lunchticket/scholarships",
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }
+    }
+  ); if (!becas.ok) {
+    throw new Error(`Error! status: ${becas.status}`);
+  } else {
+    const tiposbecas = await becas.json();
+    setScholarships(tiposbecas);
+}
+    
+};
+
 
   return (
 <div>
@@ -84,6 +131,26 @@ export default function AddStudent() {
           
         />
        </Box>
+        <Box>
+        <TextField
+          id="standard-select-currency"
+          select
+          label="Seleccione tipo de beca"
+          value={currency}
+          onChange={handleChange}
+          helperText="Por favor seleccione el tipo de beca"
+          variant="standard"
+        >
+          
+           {scholarships.map((option) => (
+            <MenuItem key={option.name} value={option.name}>
+              {option.name}
+            </MenuItem>
+          ))}
+        </TextField>
+
+        </Box>
+
        <Stack
         direction="row"
         spacing={2}
@@ -96,7 +163,7 @@ export default function AddStudent() {
         }}
       >
       
-        <Button variant="contained" disableElevation onClick={handleClick} endIcon={<HowToRegIcon />}>
+        <Button variant="contained" disableElevation onClick={onAddStd} endIcon={<HowToRegIcon />}>
           Registrar
         </Button>
       </Stack>

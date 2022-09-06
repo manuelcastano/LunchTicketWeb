@@ -4,49 +4,52 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
-
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import { BASEURL } from "../constants/Constants";
 
 export default function CheckboxLabels() {
 
-  const currencies = [
-    {
-      value: 'USD',
-      label: '$',
-    },
-    {
-      value: 'EUR',
-      label: '€',
-    },
-    {
-      value: 'BTC',
-      label: '฿',
-    },
-    {
-      value: 'JPY',
-      label: '¥',
-    },
-  ];
-
-  const [currency, setCurrency] = React.useState('EUR');
-
+  const [currency, setCurrency] = React.useState("");
+  const [scholarships, setScholarships] = React.useState([]);
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
 
     const [document, setDocument] = useState("");
     const [rows,setRows]= useState({});
-    
-    
 
     const onDocument = (event) => {
         setDocument(event.target.value);
       };
-    
-    
+
+      React.useEffect(()=>{
+        listScholarships()
+        console.log("oee " +scholarships.name)
+      },[]);
+
+      const listScholarships = async () => { 
+      const becas = await fetch(
+        BASEURL+"/lunchticket/scholarships",
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }
+        }
+      ); if (!becas.ok) {
+        throw new Error(`Error! status: ${becas.status}`);
+      } else {
+        const tiposbecas = await becas.json();
+        setScholarships(tiposbecas);
+    }
+  }
+  
+
     const searchStudent = async () => {
 
         const resultSearch = await fetch(
-            " https://cb52-186-27-157-17.ngrok.io/lunchticket/getUserByUsername",
+            BASEURL+"/lunchticket/getUserByUsername",
             {
               method: "POST",
               headers: {
@@ -54,7 +57,7 @@ export default function CheckboxLabels() {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                username: document
+                id: document
               }),
             }
           );
@@ -65,11 +68,72 @@ export default function CheckboxLabels() {
             //Cambiar la página con route de acuerdo al rol que tenga
             const backResponse = await resultSearch.json();
             setRows([backResponse]);
-          
-            console.log("backResponse is: ", backResponse.username)  
+            console.log("backResponse is: ", backResponse.username)
+           
+       
           }
 
     }
+
+
+    const enRoll = async()=> {
+
+      const addRoll = await fetch(
+        BASEURL+"/lunchticket/addRole",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id:document,
+            usertype: 1
+          }),
+        }
+      );
+      if (!addRoll.ok) {
+        throw new Error(`Error! status: ${addRoll.status}`);
+      } else {
+        //Recibir el usuario con un array que contenga sus roles
+        //Cambiar la página con route de acuerdo al rol que tenga
+        const backResponse = await addRoll.json();
+        //setdelestado
+        console.log("backResponse is: ", backResponse)
+
+      }
+
+      const addScholarShip = await fetch(
+        BASEURL+"/lunchticket/addScholarship",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id:document,
+            scholarshipName: currency
+          }),
+        }
+      );
+      if (!addScholarShip.ok) {
+        throw new Error(`Error! status: ${addScholarShip.status}`);
+      } else {
+        //Recibir el usuario con un array que contenga sus roles
+        //Cambiar la página con route de acuerdo al rol que tenga
+        const backResponse = await addScholarShip.json();
+         //setdelestado
+        console.log("backResponse is: ", backResponse.username)
+       
+   
+      }
+
+
+
+    }
+   
+
     return (
         <div>
         <TextField onChange={onDocument}  id="standard-basic" label="Documento" variant="standard" />
@@ -105,6 +169,7 @@ export default function CheckboxLabels() {
           }}
           variant="standard"
         />
+        
          <TextField
           id="standard-select-currency"
           select
@@ -114,12 +179,17 @@ export default function CheckboxLabels() {
           helperText="Por favor seleccione el tipo de beca"
           variant="standard"
         >
-          {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+          
+           {scholarships.map((option) => (
+            <MenuItem key={option.name} value={option.name}>
+              {option.name}
             </MenuItem>
           ))}
         </TextField>
+            <br></br>
+        <Button variant="contained" disableElevation onClick={enRoll} endIcon={<HowToRegIcon />}>
+          Registrar
+        </Button>
         
       </div>
     </Box>
