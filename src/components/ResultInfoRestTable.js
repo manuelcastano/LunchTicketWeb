@@ -50,6 +50,7 @@ export default function ResultInfoRestTable({ proRes }) {
         } else {
           const backResponse = await response.json();
           setAll(backResponse);
+          console.log("BackResponse: "+ JSON.stringify(backResponse));
         }
       } catch (err) {
         console.log(err.message);
@@ -169,7 +170,6 @@ export default function ResultInfoRestTable({ proRes }) {
           }}
         >
           {all.map((option) => {
-            console.log(JSON.stringify(option));
             return (
               <CardView key={option.id} resturant={option} proRes={proRes} />
             );
@@ -189,10 +189,8 @@ export default function ResultInfoRestTable({ proRes }) {
           }}
         >
           {all.map((option) => {
-            console.log(JSON.stringify(option));
-            console.log(option.username);
             return (
-              <CardView key={option.id} employee={option} proRes={proRes} />
+              <CardView key={option.id} employee={option.userID} proRes={proRes} />
             );
           })}
         </div>
