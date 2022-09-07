@@ -4,7 +4,6 @@ import { BASEURL } from "../constants/Constants";
 import { useState } from "react";
 
 function CardView(props) {
-
   const [deleted, setDeleted] = useState(false);
 
   const Delete = async () => {
@@ -14,7 +13,7 @@ function CardView(props) {
       id = props.resturant.nit;
       path = path + "/deleteRestaurant";
     } else {
-        id = props.employee.nit;
+      id = props.employee.username;
       path = path + "/deleteRestaurantEmployee";
     }
     try {
@@ -51,32 +50,73 @@ function CardView(props) {
         borderRadius: 1,
       }}
     >
-      <Stack
-        direction="row"
-        spacing={2}
-        mt={3}
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          my: 2,
-        }}
-      >
-        <Box>
-          <Typography variant="subtitle1" sx={{ color: "#000000", my: 2 }}>
-            {props.resturant.name}
-          </Typography>
-        </Box>
+      {props.proRes ? (
+        <Stack
+          direction="row"
+          spacing={2}
+          mt={3}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            my: 2,
+          }}
+        >
+          <Box>
+            <Typography variant="subtitle1" sx={{ color: "#000000", my: 2 }}>
+              {props.resturant.name}
+            </Typography>
+          </Box>
 
-        <Box>
-          <Typography variant="subtitle1" sx={{ color: "#000000", my: 2 }}>
-            {props.resturant.nit}
-          </Typography>
-        </Box>
+          <Box>
+            <Typography variant="subtitle1" sx={{ color: "#000000", my: 2 }}>
+              {props.resturant.nit}
+            </Typography>
+          </Box>
 
-        <Box>
-          <Button onClick={()=>{Delete()}}>Eliminar</Button>
-        </Box>
-      </Stack>
+          <Box>
+            <Button
+              onClick={() => {
+                Delete();
+              }}
+            >
+              Eliminar
+            </Button>
+          </Box>
+        </Stack>
+      ) : (
+        <Stack
+          direction="row"
+          spacing={2}
+          mt={3}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            my: 2,
+          }}
+        >
+          <Box>
+            <Typography variant="subtitle1" sx={{ color: "#000000", my: 2 }}>
+              {props.employee.pers_name}
+            </Typography>
+          </Box>
+
+          <Box>
+            <Typography variant="subtitle1" sx={{ color: "#000000", my: 2 }}>
+              {props.employee.usernmae}
+            </Typography>
+          </Box>
+
+          <Box>
+            <Button
+              onClick={() => {
+                Delete();
+              }}
+            >
+              Eliminar
+            </Button>
+          </Box>
+        </Stack>
+      )}
     </Box>
   );
 }

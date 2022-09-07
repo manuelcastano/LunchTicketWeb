@@ -15,6 +15,7 @@ export default function ResultInfoRestTable({ proRes }) {
   const [all, setAll] = useState([]);
 
   const getAll = async () => {
+    
     if (proRes) {
       try {
         const response = await fetch(BASEURL + "/lunchticket/restaurants", {
@@ -33,18 +34,22 @@ export default function ResultInfoRestTable({ proRes }) {
       }
     } else {
       try {
-        const response = await fetch(
-          BASEURL + "/lunchticket/restaurantEmployees",
-          {
-            method: "GET",
-          }
-        );
+        const response = await fetch(BASEURL + "/lunchticket/getEmployees", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: id,
+          }),
+        });
 
         if (!response.ok) {
           throw new Error(`Error! status: ${response.status}`);
         } else {
           const backResponse = await response.json();
-          console.log("restaurantEmployees: " + backResponse);
+          setAll(backResponse);
         }
       } catch (err) {
         console.log(err.message);
@@ -54,7 +59,9 @@ export default function ResultInfoRestTable({ proRes }) {
   };
 
   useEffect(() => {
-    getAll();
+    if(proRes){
+      getAll();
+    }
   }, []);
 
   const handleClick = async () => {
@@ -108,8 +115,7 @@ export default function ResultInfoRestTable({ proRes }) {
         } else {
           const backResponse = await response.json();
           setFound(true);
-          setName(backResponse.pers_name);
-          setId(backResponse.username);
+          getAll();
         }
       } catch (err) {
         console.log(err.message);
@@ -149,8 +155,8 @@ export default function ResultInfoRestTable({ proRes }) {
     }
   };
 
-  const renderList = (restaurant) => {
-    if (restaurant) {
+  const renderList = () => {
+    if (proRes) {
       return (
         <div
           style={{
@@ -163,7 +169,10 @@ export default function ResultInfoRestTable({ proRes }) {
           }}
         >
           {all.map((option) => {
-            return <CardView key={option.id} resturant={option} proRes={true} />;
+            console.log(JSON.stringify(option));
+            return (
+              <CardView key={option.id} resturant={option} proRes={proRes} />
+            );
           })}
         </div>
       );
@@ -180,7 +189,11 @@ export default function ResultInfoRestTable({ proRes }) {
           }}
         >
           {all.map((option) => {
-            return <CardView key={option.id} employee={option} proRes={false} />;
+            console.log(JSON.stringify(option));
+            console.log(option.username);
+            return (
+              <CardView key={option.id} employee={option} proRes={proRes} />
+            );
           })}
         </div>
       );
@@ -190,52 +203,45 @@ export default function ResultInfoRestTable({ proRes }) {
   return (
     <Box>
       <Box>
-        {proRes ? (
-          <TextField
-            id="standard-basic"
-            label="Nit del restaurante"
-            variant="standard"
-            onChange={(e) => {
-              setId(e.target.value);
-            }}
-          />
-        ) : (
-          <TextField
-            id="standard-basic"
-            label="Id del empleado"
-            variant="standard"
-            onChange={(e) => {
-              setId(e.target.value);
-            }}
-          />
-        )}
+        <TextField
+          id="standard-basic"
+          label="Nit del restaurante"
+          variant="standard"
+          onChange={(e) => {
+            setId(e.target.value);
+          }}
+        />
         <Button size="small" onClick={handleClick}>
           Buscar
         </Button>
       </Box>
-      <Box paddingTop={5}>
-        <TextField
-          id="standard-read-only-input"
-          label="Nombre"
-          value={name}
-          InputProps={{
-            readOnly: true,
-          }}
-          variant="standard"
-        />
-        <TextField
-          id="standard-read-only-input"
-          label="Id"
-          value={id}
-          InputProps={{
-            readOnly: true,
-          }}
-          variant="standard"
-        />
-      </Box>
-      <Box>
-        {found && !deleted && <Button onClick={Delete}>Eliminar</Button>}
-      </Box>
+      {proRes && (
+        <>
+        <Box paddingTop={5}>
+          <TextField
+            id="standard-read-only-input"
+            label="Nombre"
+            value={name}
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="standard"
+          />
+          <TextField
+            id="standard-read-only-input"
+            label="Id"
+            value={id}
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="standard"
+          />
+        </Box>
+         <Box>
+         {found && !deleted && <Button onClick={Delete}>Eliminar</Button>}
+       </Box>
+       </>
+      )}
       <Box my={5}>
         {deleted && (
           <Typography my={5} variant="subtitle1" color={"#BA0606"}>
