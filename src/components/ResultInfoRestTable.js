@@ -3,12 +3,59 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { Button, Box, Typography } from "@mui/material";
 import { BASEURL } from "../constants/Constants";
+import CardView from "./CardView";
+import { useEffect } from "react";
 
 export default function ResultInfoRestTable({ proRes }) {
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [found, setFound] = useState(false);
   const [deleted, setDeleted] = useState(false);
+
+  const [all, setAll] = useState([]);
+
+  const getAll = async () => {
+    if (proRes) {
+      try {
+        const response = await fetch(BASEURL + "/lunchticket/restaurants", {
+          method: "GET",
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error! status: ${response.status}`);
+        } else {
+          const backResponse = await response.json();
+          setAll(backResponse);
+        }
+      } catch (err) {
+        console.log(err.message);
+        setName("No se encuentra");
+      }
+    } else {
+      try {
+        const response = await fetch(
+          BASEURL + "/lunchticket/restaurantEmployees",
+          {
+            method: "GET",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`Error! status: ${response.status}`);
+        } else {
+          const backResponse = await response.json();
+          console.log("restaurantEmployees: " + backResponse);
+        }
+      } catch (err) {
+        console.log(err.message);
+        setName("No se encuentra");
+      }
+    }
+  };
+
+  useEffect(() => {
+    getAll();
+  }, []);
 
   const handleClick = async () => {
     setDeleted(false);
@@ -102,6 +149,44 @@ export default function ResultInfoRestTable({ proRes }) {
     }
   };
 
+  const renderList = (restaurant) => {
+    if (restaurant) {
+      return (
+        <div
+          style={{
+            height: 300,
+            scrollbarWidth: "none",
+            backgroundColor: "#ffff",
+            display: "flex",
+            flexDirection: "column",
+            overflowY: "scroll",
+          }}
+        >
+          {all.map((option) => {
+            return <CardView key={option.id} resturant={option} proRes={true} />;
+          })}
+        </div>
+      );
+    } else {
+      return (
+        <div
+          style={{
+            height: 300,
+            scrollbarWidth: "none",
+            backgroundColor: "#ffff",
+            display: "flex",
+            flexDirection: "column",
+            overflowY: "scroll",
+          }}
+        >
+          {all.map((option) => {
+            return <CardView key={option.id} employee={option} proRes={false} />;
+          })}
+        </div>
+      );
+    }
+  };
+
   return (
     <Box>
       <Box>
@@ -124,7 +209,6 @@ export default function ResultInfoRestTable({ proRes }) {
             }}
           />
         )}
-
         <Button size="small" onClick={handleClick}>
           Buscar
         </Button>
@@ -152,13 +236,14 @@ export default function ResultInfoRestTable({ proRes }) {
       <Box>
         {found && !deleted && <Button onClick={Delete}>Eliminar</Button>}
       </Box>
-      <Box>
-        {deleted &&
-        <Typography my={5} variant="subtitle1" color={"#BA0606"}>
-          Eliminado éxitosamente
-        </Typography>
-        }
+      <Box my={5}>
+        {deleted && (
+          <Typography my={5} variant="subtitle1" color={"#BA0606"}>
+            Eliminado éxitosamente
+          </Typography>
+        )}
       </Box>
+      {renderList(proRes)}
     </Box>
   );
 }

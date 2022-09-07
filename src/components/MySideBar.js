@@ -10,7 +10,7 @@ const MySideBar = (props) => {
 
     return (
       <>
-      <div style={{ display: 'flex', flexDirection:'column', height: '100vh', width:'300px', overflow: 'scroll initial', backgroundColor:'#000' }}>
+      <div style={{ display: 'flex', flexDirection:'column', height: '120vh', width:'300px', overflow: 'scroll initial', backgroundColor:'#000' }}>
         
             <button onClick={()=>{props.onOption(1)}}>
                 Estudiante

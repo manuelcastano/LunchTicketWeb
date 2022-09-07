@@ -61,10 +61,11 @@ function SingupForm({ proRes }) {
           nit === "" ||
           employeeLastName === "" ||
           employeeId === "" ||
-          employeeName ||
+          employeeName === "" ||
           employeePassword === ""
         )
       ) {
+        console.log("in!!!");
         try {
           const response = await fetch(
             BASEURL + "/lunchticket/addRestaurantEmployee",
