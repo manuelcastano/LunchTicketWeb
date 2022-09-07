@@ -48,20 +48,77 @@ export default function AddStudent() {
 const onAddStd = async () => {
 
 
-  const becas = await fetch(
-    BASEURL+"/lunchticket/scholarships",
+  const createUser = await fetch(
+
+    BASEURL+"/lunchticket/login",
     {
-      method: "GET",
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-      }
+      },
+      body:JSON.stringify({
+        persName:name,
+        persLastname:lastname,
+        persIddocument:document
+      })
     }
-  ); if (!becas.ok) {
-    throw new Error(`Error! status: ${becas.status}`);
+  ); if (!createUser.ok) {
+    throw new Error(`Error! status: ${createUser.status}`);
   } else {
-    const tiposbecas = await becas.json();
-    setScholarships(tiposbecas);
+    const student = await createUser.json();
+
+}
+
+const addRoll = await fetch(
+  BASEURL+"/lunchticket/addRole",
+  {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      document:document,
+      userTypeId: 1
+    }),
+  }
+);
+if (!addRoll.ok) {
+  throw new Error(`Error! status: ${addRoll.status}`);
+} else {
+  //Recibir el usuario con un array que contenga sus roles
+  //Cambiar la página con route de acuerdo al rol que tenga
+  const backResponse = await addRoll.json();
+  //setdelestado
+  console.log("backResponse is: ", backResponse)
+
+}
+
+const addScholarShip = await fetch(
+  BASEURL+"/lunchticket/addScholarship",
+  {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      document:document,
+      scholarshipName:currency
+    }),
+  }
+);
+if (!addScholarShip.ok) {
+  throw new Error(`Error! status: ${addScholarShip.status}`);
+} else {
+  //Recibir el usuario con un array que contenga sus roles
+  //Cambiar la página con route de acuerdo al rol que tenga
+  const backResponse = await addScholarShip.json();
+   //setdelestado
+  console.log("backResponse is: ", backResponse.username, " El estudiante se ha registrado exitosamente")
+ 
+
 }
     
 };
@@ -148,7 +205,7 @@ const onAddStd = async () => {
             </MenuItem>
           ))}
         </TextField>
-
+        
         </Box>
 
        <Stack

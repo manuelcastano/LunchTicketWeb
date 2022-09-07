@@ -2,8 +2,9 @@ import React from "react";
 import { Box, Tabs, Tab } from "@mui/material";
 import { useState } from "react";
 import AddStudent from "../components/AddStudent";
-import DeleteStudent from "../components/DeleteStudent";
+import UpdateState from "../components/UpdateState";
 import EnrollStudent from "../components/EnrollStudent";
+import Tabla from "../components/Tabla"
 
 const StudentHome = () => {
   /*let account = JSON.parse(localStorage.getItem("account"));
@@ -36,8 +37,9 @@ const StudentHome = () => {
             centered
           >
             <Tab label="Agregar Estudiante" />
-            <Tab label="Eliminar Estudiante" />
+            <Tab label="Cambiar Estado del Estudiante" />
             <Tab label="Enrolar Estudiante" />
+            <Tab label="Ejemplo Tabla" />
           </Tabs>
         </Box>
 
@@ -63,7 +65,7 @@ const StudentHome = () => {
               display: "flex",
             }}
           >
-            <DeleteStudent />
+            <UpdateState />
             </div>
         </TabPanel>
 
@@ -79,7 +81,18 @@ const StudentHome = () => {
             <EnrollStudent />
             </div>
         </TabPanel>
-   
+        <TabPanel value={value} index={3}>
+          <br />
+          <div
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+            }}
+          >
+            <Tabla />
+            </div>
+        </TabPanel>
 
 
       </Box>

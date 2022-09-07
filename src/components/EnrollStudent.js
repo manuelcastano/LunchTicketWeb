@@ -10,7 +10,7 @@ import { BASEURL } from "../constants/Constants";
 export default function CheckboxLabels() {
 
   const [currency, setCurrency] = React.useState("");
-  const [scholarships, setScholarships] = React.useState([]);
+  const [scholarships, setScholarships] = useState([]);
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
@@ -24,7 +24,6 @@ export default function CheckboxLabels() {
 
       React.useEffect(()=>{
         listScholarships()
-        console.log("oee " +scholarships.name)
       },[]);
 
       const listScholarships = async () => { 
@@ -42,6 +41,8 @@ export default function CheckboxLabels() {
       } else {
         const tiposbecas = await becas.json();
         setScholarships(tiposbecas);
+        console.log("backResponse is tipos de bacas: ", tiposbecas)
+
     }
   }
   
@@ -87,8 +88,8 @@ export default function CheckboxLabels() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            id:document,
-            usertype: 1
+            document:document,
+             userTypeId: 1
           }),
         }
       );
@@ -112,8 +113,8 @@ export default function CheckboxLabels() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            id:document,
-            scholarshipName: currency
+            document:document,
+            scholarshipName:currency
           }),
         }
       );
@@ -133,7 +134,6 @@ export default function CheckboxLabels() {
 
     }
    
-
     return (
         <div>
         <TextField onChange={onDocument}  id="standard-basic" label="Documento" variant="standard" />
