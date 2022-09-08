@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/AccesDenied.css";
+
 import Login from "./Login";
 const NotAllowed = () => {
 

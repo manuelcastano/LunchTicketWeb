@@ -66,7 +66,7 @@ const StudentHome = () => {
             }}
           >
             <UpdateState />
-            </div>
+          </div>
         </TabPanel>
 
         <TabPanel value={value} index={2}>
@@ -77,10 +77,11 @@ const StudentHome = () => {
               alignItems: "center",
               display: "flex",
             }}
-          >
-            <EnrollStudent />
-            </div>
+          >    
+             <EnrollStudent />
+          </div>
         </TabPanel>
+
         <TabPanel value={value} index={3}>
           <br />
           <div
@@ -90,8 +91,9 @@ const StudentHome = () => {
               display: "flex",
             }}
           >
-            <Tabla />
-            </div>
+           <Tabla />
+            
+          </div>
         </TabPanel>
 
 
