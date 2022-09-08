@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    flex-direction:column;
+    width:200px;
+    overflow: scroll initial;
+    background-color:#000;
+    position: fixed;
+    top:0;
+    left:0;
+    bottom: 0;
+}
+
+.logo{
+    width: 200px;
+}
+
+.button{
+    background-color: transparent;
+    color: white;
+}
+
+.button:hover{
+    background-color: blueviolet;
+}

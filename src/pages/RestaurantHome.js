@@ -5,6 +5,7 @@ import AddRestaurant from "../components/AddRestaurant";
 import DeleteRestaurant from "../components/DeleteRestaurant";
 import AddRestaurantEmployee from "../components/AddRestaurantEmployee";
 import DeleteRestaurantEmployee from "../components/DeleteRestaurantEmployee";
+import ResultInfoRestTable from "../components/ResultInfoRestTable";
 
 const RestaurantHome = () => {
   const [value, setValue] = useState(0);
@@ -15,67 +16,9 @@ const RestaurantHome = () => {
     <div className="dflex3">
       <Box>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs
-            value={value}
-            aria-label="Tabs example"
-            onChange={handleChange}
-            centered
-          >
-            <Tab label="Agregar Restaurante" />
-            <Tab label="Eliminar Restaurante" />
-            <Tab label="Agregar Empleado" />
-            <Tab label="Eliminar Empleado" />
-          </Tabs>
+          <AddRestaurant />
+          <ResultInfoRestTable proRes={true} />
         </Box>
-        <TabPanel value={value} index={0}>
-          <br />
-          <div
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <AddRestaurant />
-          </div>
-        </TabPanel>
-
-        <TabPanel value={value} index={1}>
-          <br />
-          <div
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <DeleteRestaurant />
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <br />
-          <div
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <AddRestaurantEmployee />
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          <br />
-          <div
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <DeleteRestaurantEmployee />
-          </div>
-        </TabPanel>
       </Box>
     </div>
   );

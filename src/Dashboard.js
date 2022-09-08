@@ -1,7 +1,8 @@
 import React from "react";
 import MySideBar from "../src/components/MySideBar";
 import StudentHome from "./pages/StudentHome";
-import "./css/App.css";
+import styles from './css/DashBoard.module.css'; // Import css modules stylesheet as styles
+
 import RestaurantHome from "./pages/RestaurantHome";
 import AddRestaurantEmployee from "./components/AddRestaurantEmployee";
 import { Box} from "@mui/material";
@@ -28,32 +29,34 @@ export default class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    let account = JSON.parse(localStorage.getItem("account"));
-    if (account != null) {
-      //console.log(account.user.persName);
-      const rolesAllowed = account.roles.find(
-        (roles) => roles.id === 3 || roles.id === 4
-      );
-      if (rolesAllowed != null) {
-      } else {
-        window.location.href = "/";
-      }
-    }
-    else{
-      window.location.href = "/";
-    }
+    // let account = JSON.parse(localStorage.getItem("account"));
+    // if (account != null) {
+    //   //console.log(account.user.persName);
+    //   const rolesAllowed = account.roles.find(
+    //     (roles) => roles.id === 3 || roles.id === 4
+    //   );
+    //   if (rolesAllowed != null) {
+    //   } else {
+    //     window.location.href = "/";
+    //   }
+    // }
+    // else{
+    //   window.location.href = "/";
+    // }
   }
 
   render() {
     return (
-      <Box sx={{bgcolor:'#fff', display:'flex' }}>
+   
+      <Box className={styles.body}>
         <MySideBar
           onOption={(option) => {
             this.setState({ page: option });
           }}
         />
-        <div className="dflex2">{this.content()}</div>
+        <div className={styles.content}>{this.content()}</div>
       </Box>
+
     );
   }
 }

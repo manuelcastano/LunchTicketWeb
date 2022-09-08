@@ -1,8 +1,10 @@
 import React from "react";
-import Logo from "../imgs/logo.png";
+import logo from "../imgs/logo.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AUTHURL, BASEURL } from "../constants/Constants";
+import styles from '../css/Login.module.css'; // Import css modules stylesheet as styles
+
 
 
 function Login() {
@@ -142,7 +144,7 @@ function Login() {
 
   return (
     <div className="Login">
-      <img src={Logo} alt={""} />
+      <img className={styles.logo} src={logo} alt={""} />
       <p>Cédula</p>
       <input onChange={onUser} type="text" placeholder="Número de cédula" />
       <p>Contraseña de banner</p>
