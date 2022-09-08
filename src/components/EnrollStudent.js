@@ -141,7 +141,27 @@ export default function EnrollStudent() {
       >
         <div>
           
+          <TextField
+            id="standard-read-only-input"
+            label="Nombres"
+            defaultValue="   "
+            value={rows[0] && rows[0].pers_name}
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="standard"
+          />
           
+          <TextField
+            id="standard-read-only-input"
+            label="Apellidos"
+            defaultValue="  "
+            value={rows[0] && rows[0].pers_lastname}
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="standard"
+          />
 
           <TextField
             id="standard-select-currency"
