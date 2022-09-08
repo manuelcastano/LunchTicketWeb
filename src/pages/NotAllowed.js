@@ -1,5 +1,6 @@
 import { Box, Typography, Button } from "@mui/material";
 import React from "react";
+
 const NotAllowed = () => {
   const onClick = () => {
     localStorage.clear();
