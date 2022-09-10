@@ -58,6 +58,7 @@ function CardView(props) {
           sx={{
             display: "flex",
             flexDirection: "row",
+            alignItems: "center",
             my: 2,
           }}
         >
