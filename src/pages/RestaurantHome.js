@@ -6,6 +6,7 @@ import DeleteRestaurant from "../components/DeleteRestaurant";
 import AddRestaurantEmployee from "../components/AddRestaurantEmployee";
 import DeleteRestaurantEmployee from "../components/DeleteRestaurantEmployee";
 import ResultInfoRestTable from "../components/ResultInfoRestTable";
+import styles from "../css/RestaurantHome.module.css"; // Import css modules stylesheet as styles
 
 const RestaurantHome = () => {
   const [value, setValue] = useState(0);
@@ -13,7 +14,7 @@ const RestaurantHome = () => {
     setValue(newValue);
   };
   return (
-    <div className="dflex3">
+    <div className={styles.box}>
       <Box>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <AddRestaurant />

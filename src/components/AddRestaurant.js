@@ -7,11 +7,7 @@ export default AddRestaurant;
 function AddRestaurant() {
 
   return (
-    <Box sx={{
-      width: "100%",
-      height: 500,
-      backgroundColor: '#fff',
-    }}>
+    <Box>
       <Typography variant="h4" align="center" sx={{ color:'#999', my:2}}>
         Registra un restaurante
       </Typography>
