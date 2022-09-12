@@ -41,6 +41,7 @@ function CardView(props) {
     navigate("/employees", {
       state: {
         nit: nit,
+        name: name,
       },
     });
   };

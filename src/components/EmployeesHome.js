@@ -16,7 +16,8 @@ function EmployeesHome() {
 
   const location = useLocation();
   const nit = location.state.nit;
-  console.log("NIT!!!!: " + location.state.nit);
+  const name = location.state.name;
+
 
   const [message, setMessage] = useState("");
 
@@ -179,9 +180,8 @@ function EmployeesHome() {
           {message}
         </Typography>
         <Box>
-          <Typography my={5} variant="h5" color={"#999"}></Typography>
           <Typography my={5} variant="h5" color={"#999"}>
-            Empleados
+            Empleados {name}
           </Typography>
         </Box>
         {renderList()}
