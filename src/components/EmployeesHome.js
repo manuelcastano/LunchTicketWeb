@@ -6,14 +6,18 @@ import { BASEURL } from "../constants/Constants";
 import styles from "../css/RestaurantHome.module.css";
 import CardViewEmployee from "./CardViewEmployee.js";
 import listStyles from "../css/List.module.css";
+import { useLocation } from "react-router-dom";
 
-function EmployeesHome({ proNit }) {
+function EmployeesHome() {
   const [employeeName, setEmployeeName] = useState("");
   const [employeeLastName, setEmployeeLastName] = useState("");
   const [employeeId, setEmployeeId] = useState("");
   const [employeePassword, setEmployeePassword] = useState("");
 
-  console.log("NIT!!!!: " + proNit);
+  const location = useLocation();
+  const nit = location.state.nit;
+  console.log("NIT!!!!: " + location.state.nit);
+
   const [message, setMessage] = useState("");
 
   const [all, setAll] = useState([]);
@@ -38,7 +42,7 @@ function EmployeesHome({ proNit }) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              nit: "1",
+              nit: nit,
               name: employeeName,
               lastName: employeeLastName,
               document: employeeId,
@@ -73,7 +77,7 @@ function EmployeesHome({ proNit }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: "1",
+          id: nit,
         }),
       });
 
@@ -97,7 +101,12 @@ function EmployeesHome({ proNit }) {
       <Box className={listStyles.box}>
         {all.map((option) => {
           console.log("Employee: " + option.userID.username);
-          return <CardViewEmployee key={option.id} employee={option.userID} />;
+          return (
+            <CardViewEmployee
+              key={option.id}
+              employee={option.userID}
+            ></CardViewEmployee>
+          );
         })}
       </Box>
     );
@@ -170,6 +179,7 @@ function EmployeesHome({ proNit }) {
           {message}
         </Typography>
         <Box>
+          <Typography my={5} variant="h5" color={"#999"}></Typography>
           <Typography my={5} variant="h5" color={"#999"}>
             Empleados
           </Typography>

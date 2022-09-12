@@ -1,9 +1,9 @@
 import React from "react";
-import MySideBar from "../src/components/MySideBar";
-import StudentHome from "./pages/StudentHome";
-import styles from './css/DashBoard.module.css'; // Import css modules stylesheet as styles
+import MySideBar from "../components/MySideBar";
+import StudentHome from "./StudentHome";
+import styles from '../css/DashBoard.module.css'; // Import css modules stylesheet as styles
 
-import RestaurantHome from "./pages/RestaurantHome";
+import RestaurantHome from "./RestaurantHome";
 import { Box} from "@mui/material";
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -26,20 +26,20 @@ export default class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    // let account = JSON.parse(localStorage.getItem("account"));
-    // if (account != null) {
-    //   //console.log(account.user.persName);
-    //   const rolesAllowed = account.roles.find(
-    //     (roles) => roles.id === 3 || roles.id === 4
-    //   );
-    //   if (rolesAllowed != null) {
-    //   } else {
-    //     window.location.href = "/";
-    //   }
-    // }
-    // else{
-    //   window.location.href = "/";
-    // }
+    let account = JSON.parse(localStorage.getItem("account"));
+    if (account != null) {
+      //console.log(account.user.persName);
+      const rolesAllowed = account.roles.find(
+        (roles) => roles.id === 3 || roles.id === 4
+      );
+      if (rolesAllowed != null) {
+      } else {
+        window.location.href = "/";
+      }
+    }
+    else{
+      window.location.href = "/";
+    }
   }
 
   render() {

@@ -1,3 +1,4 @@
+
 import React from "react";
 import logo from "../imgs/logo.png";
 import { useState } from "react";
@@ -143,7 +144,7 @@ function Login() {
   };
 
   return (
-    <div className="Login">
+    <div className={styles.body}>
       <img className={styles.logo} src={logo} alt={""} />
       <p>Cédula</p>
       <input onChange={onUser} type="text" placeholder="Número de cédula" />

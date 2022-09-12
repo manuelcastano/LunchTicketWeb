@@ -4,12 +4,12 @@ import { BASEURL } from "../constants/Constants";
 import { useState } from "react";
 import styles from "../css/CardView.module.css";
 import EmployeesHome from "./EmployeesHome";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CardView(props) {
-
   const [deleted, setDeleted] = useState(false);
   const [nit, setNit] = useState(props.resturant.nit);
+  const [name, setName] = useState(props.resturant.name);
 
   const navigate = useNavigate();
 
@@ -37,9 +37,17 @@ function CardView(props) {
     }
   };
 
+  const employees = () => {
+    navigate("/employees", {
+      state: {
+        nit: nit,
+      },
+    });
+  };
+
   return (
     <Box className={styles.box}>
-       <Stack
+      <Stack
         direction="row"
         spacing={2}
         mt={3}
@@ -50,16 +58,14 @@ function CardView(props) {
         }}
       >
         <Box>
-          <Button onClick={()=>{
-            navigate("/employees");
-          }} sx={{ color: "#000000", my: 2 }}>
-            {props.resturant.name}
+          <Button onClick={employees} sx={{ color: "#000000", my: 2 }}>
+            {name}
           </Button>
         </Box>
 
         <Box>
           <Button disabled={true} sx={{ color: "#000000", my: 2 }}>
-            {props.resturant.nit}
+            {nit}
           </Button>
         </Box>
 

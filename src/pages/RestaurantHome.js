@@ -6,6 +6,7 @@ import { BASEURL } from "../constants/Constants";
 import styles from "../css/RestaurantHome.module.css";
 import CardView from "../components/CardViewRestaurant.js";
 import listStyles from "../css/List.module.css";
+import EmployeesHome from "../components/EmployeesHome";
 
 const RestaurantHome = () => {
   const [name, setName] = useState("");
@@ -43,7 +44,8 @@ const RestaurantHome = () => {
       <Box className={listStyles.box}>
         {all.map((option) => {
           console.log(option.nit);
-          return <CardView key={option.id} resturant={option}/>;
+          return <CardView key={option.id} resturant={option}>
+          </CardView>;
         })}
       </Box>
     );
