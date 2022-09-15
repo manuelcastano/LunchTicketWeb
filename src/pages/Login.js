@@ -9,7 +9,11 @@ import styles from '../css/Login.module.css'; // Import css modules stylesheet a
 
 
 function Login() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState("");
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   let account = JSON.parse(localStorage.getItem("account"));
 
   if (account != null) {
@@ -26,11 +30,7 @@ function Login() {
     return;
   }
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [err, setErr] = useState("");
-
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  
 
   const navigate = useNavigate();
   const navigateApproved = () => {
