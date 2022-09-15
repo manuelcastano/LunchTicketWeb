@@ -6,7 +6,6 @@ import { BASEURL } from "../constants/Constants";
 import styles from "../css/RestaurantHome.module.css";
 import CardView from "../components/CardViewRestaurant.js";
 import listStyles from "../css/List.module.css";
-import EmployeesHome from "../components/EmployeesHome";
 
 const RestaurantHome = () => {
   const [name, setName] = useState("");
@@ -109,38 +108,38 @@ const RestaurantHome = () => {
 
   return (
     <Box className={styles.bigBox}>
+      <Typography variant="h4" align="center" sx={{ color: "#999", my: 2 }}>
+        Registra un restaurante
+      </Typography>
+      <Box>
+        <TextField
+          label="Nombre del restaurante"
+          variant="outlined"
+          size="small"
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+      </Box>
+      <Box>
+        <TextField
+          label="NIT del restaurante"
+          variant="outlined"
+          size="small"
+          onChange={(e) => {
+            setId(e.target.value);
+          }}
+        />
+      </Box>
+      <Button
+        variant="contained"
+        disableElevation
+        onClick={handleClick}
+        endIcon={<HowToRegIcon />}
+      >
+        Registrar
+      </Button>
       <Box className={styles.smallBox}>
-        <Typography variant="h4" align="center" sx={{ color: "#999", my: 2 }}>
-          Registra un restaurante
-        </Typography>
-        <Box>
-          <TextField
-            label="Nombre del restaurante"
-            variant="outlined"
-            size="small"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
-        </Box>
-        <Box>
-          <TextField
-            label="NIT del restaurante"
-            variant="outlined"
-            size="small"
-            onChange={(e) => {
-              setId(e.target.value);
-            }}
-          />
-        </Box>
-        <Button
-          variant="contained"
-          disableElevation
-          onClick={handleClick}
-          endIcon={<HowToRegIcon />}
-        >
-          Registrar
-        </Button>
         <Box>
           <Typography my={5} variant="subtitle1" color={"#BA0606"}>
             {message}

@@ -18,7 +18,6 @@ function EmployeesHome() {
   const nit = location.state.nit;
   const name = location.state.name;
 
-
   const [message, setMessage] = useState("");
 
   const [all, setAll] = useState([]);
@@ -126,75 +125,73 @@ function EmployeesHome() {
 
   return (
     <Box className={styles.bigBox}>
-      <Box className={styles.smallBox}>
-        <Typography variant="h4" align="center" sx={{ color: "#999", my: 2 }}>
-          Registra un empleado
-        </Typography>
-        <Box>
-          <TextField
-            id="outlined-basic"
-            label="ID del empleado"
-            variant="outlined"
-            size="small"
-            name="employeeId"
-            onChange={(e) => {
-              setEmployeeId(e.target.value);
-            }}
-          />
-        </Box>
-        <Box>
-          <TextField
-            id="outlined-basic"
-            label="Nombre del empleado"
-            variant="outlined"
-            size="small"
-            name="employeeName"
-            onChange={(e) => {
-              setEmployeeName(e.target.value);
-            }}
-          />
-        </Box>
-        <Box>
-          <TextField
-            id="outlined-basic"
-            label="Apellido del empleado"
-            variant="outlined"
-            size="small"
-            name="employeeLastName"
-            onChange={(e) => {
-              setEmployeeLastName(e.target.value);
-            }}
-          />
-        </Box>
-        <Box>
-          <TextField
-            id="outlined-basic"
-            label="Contraseña del empleado"
-            variant="outlined"
-            size="small"
-            name="employeePassword"
-            onChange={(e) => {
-              setEmployeePassword(e.target.value);
-            }}
-          />
-        </Box>
+      <Typography variant="h4" align="center" sx={{ color: "#999", my: 2 }}>
+        Registra un empleado
+      </Typography>
+      <Box>
+        <TextField
+          id="outlined-basic"
+          label="ID del empleado"
+          variant="outlined"
+          size="small"
+          name="employeeId"
+          onChange={(e) => {
+            setEmployeeId(e.target.value);
+          }}
+        />
+      </Box>
+      <Box>
+        <TextField
+          id="outlined-basic"
+          label="Nombre del empleado"
+          variant="outlined"
+          size="small"
+          name="employeeName"
+          onChange={(e) => {
+            setEmployeeName(e.target.value);
+          }}
+        />
+      </Box>
+      <Box>
+        <TextField
+          id="outlined-basic"
+          label="Apellido del empleado"
+          variant="outlined"
+          size="small"
+          name="employeeLastName"
+          onChange={(e) => {
+            setEmployeeLastName(e.target.value);
+          }}
+        />
+      </Box>
+      <Box>
+        <TextField
+          id="outlined-basic"
+          label="Contraseña del empleado"
+          variant="outlined"
+          size="small"
+          name="employeePassword"
+          onChange={(e) => {
+            setEmployeePassword(e.target.value);
+          }}
+        />
+      </Box>
 
-        <Button
-          variant="contained"
-          disableElevation
-          onClick={handleClick}
-          endIcon={<HowToRegIcon />}
-        >
-          Registrar
-        </Button>
-        <Typography my={5} variant="subtitle1" color={"#BA0606"}>
-          {message}
+      <Button
+        variant="contained"
+        disableElevation
+        onClick={handleClick}
+        endIcon={<HowToRegIcon />}
+      >
+        Registrar
+      </Button>
+      <Typography my={5} variant="subtitle1" color={"#BA0606"}>
+        {message}
+      </Typography>
+      <Box className={styles.smallBox}>
+        <Typography my={5} variant="h5" color={"#999"}>
+          Empleados {name}
         </Typography>
-        <Box>
-          <Typography my={5} variant="h5" color={"#999"}>
-            Empleados {name}
-          </Typography>
-        </Box>
         {renderList()}
       </Box>
     </Box>
