@@ -101,11 +101,22 @@ function EmployeesHome() {
     return (
       <Box className={listStyles.box}>
         {all.map((option) => {
-          console.log("Employee: " + option.userID.username);
           return (
             <CardViewEmployee
               key={option.id}
               employee={option.userID}
+              onDelete={() => {
+                getAll();
+                /*
+                for(let i=0 ; i<all.length ; i++){
+                  if(all[i].id === id){
+                    console.log("Encontrado");
+                    all.splice(i,1);
+                    console.log(JSON.stringify(all));
+                    setAll(all);                  
+                  }
+                }*/
+              }}
             ></CardViewEmployee>
           );
         })}

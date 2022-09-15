@@ -18,15 +18,16 @@ const RestaurantHome = () => {
   const [all, setAll] = useState([]);
 
   const getAll = async () => {
+    console.log("getall");
     try {
-      const response = await fetch(BASEURL + "/lunchticket/restaurants", {
+      let response = await fetch(BASEURL + "/lunchticket/restaurants", {
         method: "GET",
       });
 
       if (!response.ok) {
         throw new Error(`Error! status: ${response.status}`);
       } else {
-        const backResponse = await response.json();
+        let backResponse = await response.json();
         setAll(backResponse);
       }
     } catch (err) {
@@ -43,9 +44,24 @@ const RestaurantHome = () => {
     return (
       <Box className={listStyles.box}>
         {all.map((option) => {
-          console.log(option.nit);
-          return <CardView key={option.id} resturant={option}>
-          </CardView>;
+          return (
+            <CardView
+              key={option.id}
+              resturant={option}
+              onDelete={() => {
+                getAll();
+                /*
+                for(let i=0 ; i<all.length ; i++){
+                  if(all[i].id === id){
+                    console.log("Encontrado");
+                    all.splice(i,1);
+                    console.log(JSON.stringify(all));
+                    setAll(all);                  
+                  }
+                }*/
+              }}
+            ></CardView>
+          );
         })}
       </Box>
     );
@@ -132,12 +148,10 @@ const RestaurantHome = () => {
         </Box>
       </Box>
       <Box>
-      <Typography my={5} variant="h5" color={"#999"}>
-        Restaurantes
-      </Typography>
-      <Box>
-      {renderList(true)}
-      </Box>
+        <Typography my={5} variant="h5" color={"#999"}>
+          Restaurantes
+        </Typography>
+        <Box>{renderList()}</Box>
       </Box>
     </Box>
   );

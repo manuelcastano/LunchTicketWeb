@@ -35,47 +35,22 @@ function CardViewEmployee(props) {
   };
 
   return (
-    <Box className={styles.box}>
-      <Stack
-        direction="row"
-        spacing={2}
-        mt={3}
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <Box>
-          <Typography variant="subtitle1" sx={{ color: "#000000", my: 2 }}>
-            {props.employee.pers_name}
-          </Typography>
-        </Box>
-
-        <Box>
-          <Typography variant="subtitle1" sx={{ color: "#000000", my: 2 }}>
-            {props.employee.username}
-          </Typography>
-        </Box>
-
-        <Box>
-          <Button
-            onClick={() => {
-              Delete();
-            }}
-          >
-            Eliminar
-          </Button>
-        </Box>
-        {deleted && (
-          <Box>
-            <Typography variant="subtitle1" sx={{ color: "#BA0606", my: 2 }}>
-              {"(Eliminado)"}
-            </Typography>
-          </Box>
-        )}
-      </Stack>
-    </Box>
+    <div className={styles.box}>
+      <Box className={styles.smallbox}>
+        <button disabled={true}>{props.employee.pers_name}</button>
+        <span>{props.employee.username}</span>
+      </Box>
+      <div className={styles.deleteButton}>
+        <button
+          onClick={async () => {
+            await Delete();
+            props.onDelete();
+          }}
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
   );
 }
 

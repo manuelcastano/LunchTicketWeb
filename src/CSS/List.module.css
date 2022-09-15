@@ -1,9 +1,7 @@
 .box{
-    height: 300px;
+    gap: 10px;
     width: 600px;
     scrollbar-Width: none;
     display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    
+    flex-direction: column;    
 }
