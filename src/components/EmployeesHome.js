@@ -17,6 +17,7 @@ function EmployeesHome() {
   const location = useLocation();
   const nit = location.state.nit;
   const name = location.state.name;
+  const bcrypt = require("bcryptjs");
 
   const [message, setMessage] = useState("");
 
@@ -33,6 +34,8 @@ function EmployeesHome() {
       )
     ) {
       try {
+        const rondasDeSal = 10;
+        const passwordEncrypted = await bcrypt.hash(employeePassword, rondasDeSal);
         const response = await fetch(
           BASEURL + "/lunchticket/addRestaurantEmployee",
           {
@@ -46,7 +49,7 @@ function EmployeesHome() {
               name: employeeName,
               lastName: employeeLastName,
               document: employeeId,
-              password: employeePassword,
+              password: passwordEncrypted,
             }),
           }
         );
