@@ -1,9 +1,9 @@
 import React from "react";
 import MySideBar from "../src/components/MySideBar";
 import StudentHome from "./pages/StudentHome";
-import styles from './css/DashBoard.module.css'; // Import css modules stylesheet as styles
-
+import "./css/App.css";
 import RestaurantHome from "./pages/RestaurantHome";
+import NotAllowed from "./pages/NotAllowed";
 import AddRestaurantEmployee from "./components/AddRestaurantEmployee";
 import { Box} from "@mui/material";
 export default class Dashboard extends React.Component {
@@ -29,34 +29,35 @@ export default class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    // let account = JSON.parse(localStorage.getItem("account"));
-    // if (account != null) {
-    //   //console.log(account.user.persName);
-    //   const rolesAllowed = account.roles.find(
-    //     (roles) => roles.id === 3 || roles.id === 4
-    //   );
-    //   if (rolesAllowed != null) {
-    //   } else {
-    //     window.location.href = "/";
-    //   }
-    // }
-    // else{
-    //   window.location.href = "/";
-    // }
+    let account = JSON.parse(localStorage.getItem("account"));
+    if (account != null) {
+      //console.log(account.user.persName);
+      const rolesAllowed = account.roles.find(
+        (roles) => roles.id === 3 || roles.id === 4
+      );
+      if (rolesAllowed != null) {
+        console.log("Permitidooooo");
+      } else {
+        console.log("Denegadooo");
+      }
+    }
+    else{
+      console.log("Denegadooo porque no hay cuenta");
+      return <NotAllowed />
+     
+    }
   }
 
   render() {
     return (
-   
-      <Box className={styles.body}>
+      <Box sx={{bgcolor:'#fff', display:'flex' }}>
         <MySideBar
           onOption={(option) => {
             this.setState({ page: option });
           }}
         />
-        <div className={styles.content}>{this.content()}</div>
+        <div className="dflex2">{this.content()}</div>
       </Box>
-
     );
   }
 }
