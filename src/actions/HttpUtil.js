@@ -1,31 +1,33 @@
-const post = async (url, data)=>{
+
+import { BASEURL } from "../constants/Constants";
+
+
+const post = async (url, data) => {
     let response = await fetch(
         BASEURL + url,
         {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
         }
-      );
-      return response;
+    );
+    return response;
 }
 
-const get = async (url)=>{
+const get = async (url) => {
     let response = await fetch(
         BASEURL + url,
         {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          }
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            }
         }
-      );
-      return response;
+    );
+    return response;
 }
-
-
-export {post, get};
+export { post, get };
