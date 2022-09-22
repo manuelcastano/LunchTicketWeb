@@ -1,0 +1,9 @@
+
+.list{
+    height: 300;
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    background-color: #ffff;
+    scrollbar-width: none;
+}

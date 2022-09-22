@@ -1,12 +1,11 @@
 
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import { Box, Button, TextField, Stack,Typography } from "@mui/material";
+import { Box, Button, TextField, Stack, Typography } from "@mui/material";
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { BASEURL } from '../constants/Constants';
 import MenuItem from '@mui/material/MenuItem';
 import CardViewStudent from './CardViewStudent';
-
 
 export default function AddStudent() {
 
@@ -19,7 +18,7 @@ export default function AddStudent() {
   const [scholarships, setScholarships] = useState([]);
 
   const [students, setStudents] = useState([]);
-  const [status,setStatus]= useState("");
+  const [mesagge, setMessage] = useState("");
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
@@ -28,7 +27,6 @@ export default function AddStudent() {
   useEffect(() => {
     listScholarships()
     getStudents()
-    console.log("oee " + scholarships.name)
   }, []);
 
   const listScholarships = async () => {
@@ -56,17 +54,14 @@ export default function AddStudent() {
     } else {
       const estudiantes = await liststudents.json();
       setStudents(estudiantes);
-      console.log("back: ", estudiantes)
     }
   }
 
   const onAddStd = async () => {
 
-
-    
     const createUser = await fetch(
 
-      BASEURL + "/lunchticket/login",
+      BASEURL + "/lunchticket/addStudent",
       {
         method: "POST",
         headers: {
@@ -75,73 +70,19 @@ export default function AddStudent() {
         },
         body: JSON.stringify({
           persName: name,
-          persLastname: lastname,
-          persIddocument: document
+          persLastName: lastname,
+          persIddocument: document,
+          scholarshipName: currency
         })
       }
     ); if (!createUser.ok) {
       throw new Error(`Error! status: ${createUser.status}`);
 
     } else {
-      const student = await createUser.json();
-
-
+      const backResponse = await createUser.json();
+      setMessage(backResponse.message)
     }
-
-    const addRoll = await fetch(
-      BASEURL + "/lunchticket/addRole",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          document: document,
-          userTypeId: 1
-        }),
-      }
-    );
-    if (!addRoll.ok) {
-      throw new Error(`Error! status: ${addRoll.status}`);
-    } else {
-      //Recibir el usuario con un array que contenga sus roles
-      //Cambiar la página con route de acuerdo al rol que tenga
-      const backResponse = await addRoll.json();
-      //setdelestado
-      console.log("backResponse is: ", backResponse)
-
-    }
-
-    const addScholarShip = await fetch(
-      BASEURL + "/lunchticket/addScholarship",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          document: document,
-          scholarshipName: currency
-        }),
-      }
-    );
-    if (!addScholarShip.ok) {
-      throw new Error(`Error! status: ${addScholarShip.status}`);
-    } else {
-      //Recibir el usuario con un array que contenga sus roles
-      //Cambiar la página con route de acuerdo al rol que tenga
-      const backResponse = await addScholarShip.json();
-      //setdelestado
-      console.log("backResponse is: ", backResponse.username, " El estudiante se ha registrado exitosamente")
-     
-      setStatus(backResponse)
-
-    }
-
     getStudents()
-
   };
 
 
@@ -149,6 +90,7 @@ export default function AddStudent() {
 
     return (
       <div
+
         style={{
           height: 300,
           scrollbarWidth: "none",
@@ -167,10 +109,15 @@ export default function AddStudent() {
 
 
 
+
+
+  
+
   return (
     <div>
 
       <Box
+
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -244,7 +191,7 @@ export default function AddStudent() {
 
             {scholarships.map((option) => (
               <MenuItem key={option.name} value={option.name}>
-              {option.name}
+                {option.name}
               </MenuItem>
             ))}
           </TextField>
@@ -262,26 +209,18 @@ export default function AddStudent() {
             alignContent: "center",
           }}
         >
-
-          <Button variant="contained" disableElevation onClick={onAddStd}  endIcon={<HowToRegIcon />}>
+          <Button variant="contained" disableElevation onClick={onAddStd} endIcon={<HowToRegIcon />}>
             Registrar
           </Button>
-
-
         </Stack>
-
         <Box>
           <Typography variant="subtitle1" sx={{ color: "#000000", my: 2 }}>
-            {}
+            {mesagge}
           </Typography>
         </Box>
-
         <Box>
-
           {renderList()}
-
         </Box>
-
       </Box>
     </div>
   );

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from "react";
 import TextField from '@mui/material/TextField';
+import {Typography} from "@mui/material";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
@@ -9,8 +10,9 @@ import { BASEURL } from "../constants/Constants";
 
 export default function EnrollStudent() {
 
-  const [currency, setCurrency] = React.useState("");
+  const [currency, setCurrency] = useState("");
   const [scholarships, setScholarships] = useState([]);
+  const [message, setMessage] = useState("");
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
@@ -120,8 +122,8 @@ export default function EnrollStudent() {
       //Cambiar la página con route de acuerdo al rol que tenga
       const backResponse = await addScholarShip.json();
       //setdelestado
-      console.log("backResponse is: ", backResponse.username)
-
+      
+      setMessage(backResponse.message)
 
     }
 
@@ -131,17 +133,22 @@ export default function EnrollStudent() {
     <div>
       <TextField onChange={onDocument} id="standard-basic" label="Documento" variant="standard" />
       <Button size="small" onClick={searchStudent}>Buscar Estudiante</Button>
-      <Box
-        component="form"
-        sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
-          
-          <TextField
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+
+         display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignContent: "center",
+      }}
+      noValidate
+      autoComplete="off"
+
+      
+    >
+            <TextField
             id="standard-read-only-input"
             label="Nombres"
             defaultValue="   "
@@ -151,7 +158,7 @@ export default function EnrollStudent() {
             }}
             variant="standard"
           />
-          
+        
           <TextField
             id="standard-read-only-input"
             label="Apellidos"
@@ -163,7 +170,8 @@ export default function EnrollStudent() {
             variant="standard"
           />
 
-          <TextField
+
+      <TextField
             id="standard-select-currency"
             select
             label="Seleccione tipo de beca"
@@ -172,18 +180,22 @@ export default function EnrollStudent() {
             helperText="Por favor seleccione el tipo de beca"
             variant="standard"
           >
-
-            {scholarships.map((option) => (
+        {scholarships.map((option) => (
               <MenuItem key={option.name} value={option.name}>
                 {option.name}
               </MenuItem>
             ))}
           </TextField>
+          
           <br></br>
           <Button variant="contained" disableElevation onClick={enRoll} endIcon={<HowToRegIcon />}>
             Registrar
           </Button>
-        </div>
+          <br></br>
+          <Typography my={5} variant="subtitle1" color={"#BA0606"}>
+            {message}
+          </Typography>
+      
       </Box>
     </div>
   );
