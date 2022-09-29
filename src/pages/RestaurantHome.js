@@ -111,26 +111,22 @@ const RestaurantHome = () => {
       <Typography variant="h4" align="center" sx={{ color: "#999", my: 2 }}>
         Registra un restaurante
       </Typography>
-      <Box>
-        <TextField
-          label="Nombre del restaurante"
-          variant="outlined"
-          size="small"
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-        />
-      </Box>
-      <Box>
-        <TextField
-          label="NIT del restaurante"
-          variant="outlined"
-          size="small"
-          onChange={(e) => {
-            setId(e.target.value);
-          }}
-        />
-      </Box>
+      <TextField
+        label="Nombre del restaurante"
+        variant="outlined"
+        size="small"
+        onChange={(e) => {
+          setName(e.target.value);
+        }}
+      />
+      <TextField
+        label="NIT del restaurante"
+        variant="outlined"
+        size="small"
+        onChange={(e) => {
+          setId(e.target.value);
+        }}
+      />
       <Button
         variant="contained"
         disableElevation
@@ -140,17 +136,13 @@ const RestaurantHome = () => {
         Registrar
       </Button>
       <Box className={styles.smallBox}>
-        <Box>
-          <Typography my={5} variant="subtitle1" color={"#BA0606"}>
-            {message}
-          </Typography>
-        </Box>
-      </Box>
-      <Box>
-        <Typography my={5} variant="h5" color={"#999"}>
+        <Typography variant="subtitle1" color={"#BA0606"}>
+          {message}
+        </Typography>
+        <Typography variant="h5" color={"#999"}>
           Restaurantes
         </Typography>
-        <Box>{renderList()}</Box>
+        {renderList()}
       </Box>
     </Box>
   );

@@ -1,10 +1,11 @@
 .box{
     display: flex;
-    flex-direction: row;
-    height: 160px;
-    width: 400px;
+    flex-direction: column;
+    height: 150px;
+    width: 300px;
     background-color: #F4f4f4;
     border-radius: 10px;
+    
 }
 
 .box:hover{
@@ -49,6 +50,7 @@
 }
 
 .deleteButton button:hover{
-    background-color: blueviolet;
+    background-color: cornflowerblue;
     border: 1px;
+    color: #F4f4f4;
 }

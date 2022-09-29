@@ -188,11 +188,11 @@ function EmployeesHome() {
       >
         Registrar
       </Button>
-      <Typography my={5} variant="subtitle1" color={"#BA0606"}>
+      <Typography variant="subtitle1" color={"#BA0606"}>
         {message}
       </Typography>
       <Box className={styles.smallBox}>
-        <Typography my={5} variant="h5" color={"#999"}>
+        <Typography variant="h5" color={"#999"}>
           Empleados {name}
         </Typography>
         {renderList()}
