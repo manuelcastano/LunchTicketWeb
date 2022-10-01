@@ -35,22 +35,33 @@
     border: 0px;
 }
 
-.deleteButton{
+.buttons{
     display: flex;
     flex: 1;
     flex-direction: column;
     justify-content: center;
     padding: 10px;
-
+    gap: 5px;
 }
 
-.deleteButton button{
-    background-color: transparent;
+.button{
+    background-color: #1976d2;
+    border: 0px;
+    color: #F4f4f4;
+}
+.button:hover{
+    background-color: ;
+
+}
+.deleteBtn{
+    background-color: red;
+    color: #F4f4f4;
     border: 0px;
 }
 
-.deleteButton button:hover{
-    background-color: cornflowerblue;
-    border: 1px;
-    color: #F4f4f4;
+.deleteBtn:hover{
+    background-color: darkred;
+    border: 0px;
+   
 }
+

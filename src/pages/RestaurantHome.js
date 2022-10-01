@@ -19,7 +19,7 @@ const RestaurantHome = () => {
   const getAll = async () => {
     console.log("getall");
     try {
-      let response = await fetch(BASEURL + "/lunchticket/restaurants", {
+      let response = await fetch(BASEURL + "/restaurants", {
         method: "GET",
       });
 
@@ -47,17 +47,8 @@ const RestaurantHome = () => {
             <CardView
               key={option.id}
               resturant={option}
-              onDelete={() => {
+              update={() => {
                 getAll();
-                /*
-                for(let i=0 ; i<all.length ; i++){
-                  if(all[i].id === id){
-                    console.log("Encontrado");
-                    all.splice(i,1);
-                    console.log(JSON.stringify(all));
-                    setAll(all);                  
-                  }
-                }*/
               }}
             ></CardView>
           );
@@ -72,7 +63,7 @@ const RestaurantHome = () => {
 
     if (!(name === "" || nit === "")) {
       try {
-        const response = await fetch(BASEURL + "/lunchticket/addRestaurant", {
+        const response = await fetch(BASEURL + "/addRestaurant", {
           method: "POST",
           headers: {
             Accept: "application/json",

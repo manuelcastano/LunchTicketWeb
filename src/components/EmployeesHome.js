@@ -37,7 +37,7 @@ function EmployeesHome() {
         const rondasDeSal = 10;
         const passwordEncrypted = await bcrypt.hash(employeePassword, rondasDeSal);
         const response = await fetch(
-          BASEURL + "/lunchticket/addRestaurantEmployee",
+          BASEURL + "/addRestaurantEmployee",
           {
             method: "POST",
             headers: {
@@ -73,7 +73,7 @@ function EmployeesHome() {
 
   const getAll = async () => {
     try {
-      const response = await fetch(BASEURL + "/lunchticket/getEmployees", {
+      const response = await fetch(BASEURL + "/getEmployees", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -107,7 +107,8 @@ function EmployeesHome() {
             <CardViewEmployee
               key={option.id}
               employee={option.userID}
-              onDelete={() => {
+              active={option.active}
+              update={() => {
                 getAll();
                 /*
                 for(let i=0 ; i<all.length ; i++){

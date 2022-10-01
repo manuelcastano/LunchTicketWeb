@@ -11,10 +11,12 @@ function CardView(props) {
   const [nit, setNit] = useState(props.resturant.nit);
   const [name, setName] = useState(props.resturant.name);
 
+  let active = (props.resturant.active);
+
   const navigate = useNavigate();
 
   const Delete = async () => {
-    let path = BASEURL + "/lunchticket/deleteRestaurant";
+    let path = BASEURL + "/deleteRestaurant";
     try {
       const response = await fetch(path, {
         method: "POST",
@@ -37,6 +39,53 @@ function CardView(props) {
     }
   };
 
+  const disable = async () =>{
+    let path = BASEURL + "/deactivateRestaurant";
+    try {
+      const response = await fetch(path, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: nit,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      } else {
+        active='N';
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+  const enable = async () =>{
+    let path = BASEURL + "/activateRestaurant";
+    try {
+      const response = await fetch(path, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: nit,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      } else {
+        active='Y';
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
   const employees = () => {
     navigate("/employees", {
       state: {
@@ -56,11 +105,22 @@ function CardView(props) {
           {nit}
         </span>
       </Box>
+      {active === ('Y') ?
+      <button className={styles.button} onClick={async () => {
+        await disable();
+        props.update();
+      }}
+      > Inhabilitar </button>
+      :
+      <button className={styles.button} onClick={async () => {
+        await enable();
+        props.update();
+      }}> Habilitar </button>}
       <div className={styles.deleteButton}>
         <button 
           onClick={async () => {
             await Delete();
-            props.onDelete();
+            props.update();
           }}
         >
           Eliminar
