@@ -3,7 +3,6 @@ import React from "react";
 import { BASEURL } from "../constants/Constants";
 import { useState } from "react";
 import styles from "../css/CardView.module.css";
-import EmployeesHome from "./EmployeesHome";
 import { useNavigate } from "react-router-dom";
 
 function CardView(props) {
@@ -116,8 +115,7 @@ function CardView(props) {
         await enable();
         props.update();
       }}> Habilitar </button>}
-      <div className={styles.deleteButton}>
-        <button 
+      <button className={styles.deleteBtn}
           onClick={async () => {
             await Delete();
             props.update();
@@ -126,7 +124,6 @@ function CardView(props) {
           Eliminar
         </button>
       </div>
-    </div>
   );
 }
 

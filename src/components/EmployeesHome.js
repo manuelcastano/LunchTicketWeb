@@ -1,12 +1,22 @@
 import React from "react";
-import { Box, Button, TextField, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Stack,
+  Typography,
+  IconButton,
+  Icon,
+} from "@mui/material";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import { useState, useEffect } from "react";
 import { BASEURL } from "../constants/Constants";
 import styles from "../css/RestaurantHome.module.css";
 import CardViewEmployee from "./CardViewEmployee.js";
 import listStyles from "../css/List.module.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function EmployeesHome() {
   const [employeeName, setEmployeeName] = useState("");
@@ -21,7 +31,37 @@ function EmployeesHome() {
 
   const [message, setMessage] = useState("");
 
+  const navigate = useNavigate();
+
   const [all, setAll] = useState([]);
+
+  const goHome = () => {
+    navigate("/dashboard");
+  };
+
+  const deleteRestaurant = async () => {
+    let path = BASEURL + "/deleteRestaurant";
+    try {
+      const response = await fetch(path, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: nit,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      } else {
+
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   const handleClick = async () => {
     setMessage("");
@@ -35,24 +75,24 @@ function EmployeesHome() {
     ) {
       try {
         const rondasDeSal = 10;
-        const passwordEncrypted = await bcrypt.hash(employeePassword, rondasDeSal);
-        const response = await fetch(
-          BASEURL + "/addRestaurantEmployee",
-          {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              nit: nit,
-              name: employeeName,
-              lastName: employeeLastName,
-              document: employeeId,
-              password: passwordEncrypted,
-            }),
-          }
+        const passwordEncrypted = await bcrypt.hash(
+          employeePassword,
+          rondasDeSal
         );
+        const response = await fetch(BASEURL + "/addRestaurantEmployee", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nit: nit,
+            name: employeeName,
+            lastName: employeeLastName,
+            document: employeeId,
+            password: passwordEncrypted,
+          }),
+        });
 
         if (!response.ok) {
           throw new Error(`Error! status: ${response.status}`);
@@ -192,6 +232,14 @@ function EmployeesHome() {
       <Typography variant="subtitle1" color={"#BA0606"}>
         {message}
       </Typography>
+      <Box className={styles.smallerBox}>
+        <IconButton color="primary" onClick={goHome}>
+          {<HomeIcon />}
+        </IconButton>
+        <IconButton color="primary" onCLick={deleteRestaurant}>
+          {<DeleteIcon />}
+        </IconButton>
+      </Box>
       <Box className={styles.smallBox}>
         <Typography variant="h5" color={"#999"}>
           Empleados {name}
