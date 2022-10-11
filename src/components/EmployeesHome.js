@@ -236,7 +236,7 @@ function EmployeesHome() {
         <IconButton color="primary" onClick={goHome}>
           {<HomeIcon />}
         </IconButton>
-        <IconButton color="primary" onCLick={deleteRestaurant}>
+        <IconButton color="primary" onClick={deleteRestaurant}>
           {<DeleteIcon />}
         </IconButton>
       </Box>

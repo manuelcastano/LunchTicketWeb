@@ -3,11 +3,12 @@
     flex-direction:column;
     width:200px;
     overflow: scroll initial;
-    background-color:#000;
+    background-color:#F6f6f6;
     position: fixed;
     top:0;
     left:0;
     bottom: 0;
+    gap: 5px;
 }
 
 .logo{
@@ -15,8 +16,9 @@
 }
 
 .button{
-    background-color: transparent;
-    color: white;
+    background-color: #F4f4f4;
+    color: black;
+    border: 0px;
 }
 
 .button:hover{
