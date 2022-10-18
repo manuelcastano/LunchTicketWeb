@@ -5,7 +5,6 @@ import Dashboard from "./pages/Dashboard";
 import NotAllowed from "./pages/NotAllowed";
 import EmployeesHome from "./components/EmployeesHome";
 import { useState } from "react";
-import RestaurantHome from "./pages/RestaurantHome";
 
 function App() {
   const [restaurant, setRestaurant] = useState({});

@@ -19,7 +19,7 @@ const RestaurantHome = () => {
   const getAll = async () => {
     console.log("getall");
     try {
-      let response = await fetch(BASEURL + "/lunchticket/restaurants", {
+      let response = await fetch(BASEURL + "/restaurants", {
         method: "GET",
       });
 
@@ -72,7 +72,7 @@ const RestaurantHome = () => {
 
     if (!(name === "" || nit === "")) {
       try {
-        const response = await fetch(BASEURL + "/lunchticket/addRestaurant", {
+        const response = await fetch(BASEURL + "/addRestaurant", {
           method: "POST",
           headers: {
             Accept: "application/json",

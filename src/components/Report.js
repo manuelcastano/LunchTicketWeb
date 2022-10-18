@@ -1,23 +1,24 @@
 import * as React from 'react';
 import { useState } from "react";
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { DataGrid } from '@mui/x-data-grid';
 import { BASEURL } from '../constants/Constants';
+import Date from './Date';
 
 
-export default function CheckboxLabels() {
+
+export default function Report() {
 
     const [document, setDocument] = useState("");
     const [rows,setRows]= useState({});
+    const [dateini,setDateini]= useState("");
+    const [dateFin,setDateFin]= useState("");
     
     const columns = [
-        { field: 'username', headerName: 'ID', width: 180 },
-        { field: 'pers_name', headerName: 'Nombre', width: 180 },
-        { field: 'pers_lastname', headerName: 'Path', width: 180 },
+        { field: 'username', headerName: 'Documento', width: 180 },
+        { field: 'pers_name', headerName: 'Nombres', width: 180 },
+        { field: 'pers_lastname', headerName: 'Apellidos', width: 180 },
         
         {
           field: 'typescholarship',
@@ -69,12 +70,11 @@ export default function CheckboxLabels() {
     }
     return (
         <div>
-        <TextField onChange={onDocument}  id="standard-basic" label="Documento" variant="standard" />
-        <Button size="small" onClick={searchStudent}>Buscar Estudiante</Button>
-        
-       
-
-        <div style={{ height: 200, width: '100%' }}>
+        <Date setStartDate={setDateini} title="Desde"/>
+        <br></br>
+        <Date setStartDate={setDateFin} title="Hasta"/>
+        <br></br>
+        <div style={{ height: 200, width: '120%' }}>
       <DataGrid
         rows={rows}
         columns={columns}

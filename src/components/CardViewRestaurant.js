@@ -14,7 +14,7 @@ function CardView(props) {
   const navigate = useNavigate();
 
   const Delete = async () => {
-    let path = BASEURL + "/lunchticket/deleteRestaurant";
+    let path = BASEURL + "/deleteRestaurant";
     try {
       const response = await fetch(path, {
         method: "POST",

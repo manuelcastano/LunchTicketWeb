@@ -37,7 +37,7 @@ function EmployeesHome() {
         const rondasDeSal = 10;
         const passwordEncrypted = await bcrypt.hash(employeePassword, rondasDeSal);
         const response = await fetch(
-          BASEURL + "/lunchticket/addRestaurantEmployee",
+          BASEURL + "/addRestaurantEmployee",
           {
             method: "POST",
             headers: {
@@ -73,7 +73,7 @@ function EmployeesHome() {
 
   const getAll = async () => {
     try {
-      const response = await fetch(BASEURL + "/lunchticket/getEmployees", {
+      const response = await fetch(BASEURL + "/getEmployees", {
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -84,7 +84,7 @@ function Login() {
         console.log(json);
 
         const postResult = await fetch(
-          BASEURL+"/lunchticket/login",
+          BASEURL+"/login",
           {
             method: "POST",
             headers: {

@@ -31,7 +31,7 @@ export default function AddStudent() {
 
   const listScholarships = async () => {
     const becas = await fetch(
-      BASEURL + "/lunchticket/scholarships",
+      BASEURL + "/scholarships",
       {
         method: "GET"
       }
@@ -45,7 +45,7 @@ export default function AddStudent() {
 
   const getStudents = async () => {
     const liststudents = await fetch(
-      BASEURL + "/lunchticket/students",
+      BASEURL + "/students",
       {
         method: "GET"
       }
@@ -61,7 +61,7 @@ export default function AddStudent() {
 
     const createUser = await fetch(
 
-      BASEURL + "/lunchticket/addStudent",
+      BASEURL + "/addStudent",
       {
         method: "POST",
         headers: {

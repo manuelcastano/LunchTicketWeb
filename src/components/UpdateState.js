@@ -22,7 +22,7 @@ export default function AddStudent() {
   };
 
   const onDesactiveState = async () => {
-    const desactiveState = await post("/lunchticket/deactivateScholarship", {
+    const desactiveState = await post("/deactivateScholarship", {
       id: document
     });
     if (!desactiveState.ok) {
@@ -33,7 +33,7 @@ export default function AddStudent() {
   };
 
   const onActiveState = async () => {
-    const addScholarShip = await post("/lunchticket/addScholarship",{
+    const addScholarShip = await post("/addScholarship",{
       document: document,
       scholarshipName: currency
     })
@@ -46,7 +46,7 @@ export default function AddStudent() {
   }
 
   const searchStudent = async () => {
-    const resultSearch = await  post("/lunchticket/getStudent", {
+    const resultSearch = await  post("/getStudent", {
       id: document
     })
     if (!resultSearch.ok) {
@@ -67,7 +67,7 @@ export default function AddStudent() {
   }, []);
 
   const listScholarships = async () => {
-    const becas = await get("/lunchticket/scholarships")
+    const becas = await get("/scholarships")
     if (!becas.ok) {
       throw new Error(`Error! status: ${becas.status}`);
     } else {

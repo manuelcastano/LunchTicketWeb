@@ -7,21 +7,7 @@ import EnrollStudent from "../components/EnrollStudent";
 import Tabla from "../components/Tabla"
 
 const StudentHome = () => {
-  /*let account = JSON.parse(localStorage.getItem("account"));
-
-  if (account != null) {
-    //console.log(account.user.persName);
-    const rolesAllowed = account.roles.find(
-      (roles) => roles.id === 3 || roles.id === 4
-    );
-    if (rolesAllowed != null) {
-      //console.log("dentro de allowed");
-      window.location.href = "/dashboard";
-    } else {
-      window.location.href = "/notAllowed";
-    }
-    return;
-  }*/
+  
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
