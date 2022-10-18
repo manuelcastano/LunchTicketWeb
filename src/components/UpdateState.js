@@ -22,13 +22,15 @@ export default function AddStudent() {
   };
 
   const onDesactiveState = async () => {
+    setShow(false)
     const desactiveState = await post("/deactivateScholarship", {
       id: document
     });
     if (!desactiveState.ok) {
       throw new Error(`Error! status: ${desactiveState.status}`);
     } else {
-      const backResponse = await desactiveState.json();     
+      const backResponse = await desactiveState.json();  
+      setMessage(backResponse.message) 
     }
   };
 
@@ -42,6 +44,7 @@ export default function AddStudent() {
     } else {
       const backResponse = await addScholarShip.json();
       setMessage(backResponse.message)
+      setShow(false);
     }
   }
 

@@ -4,7 +4,6 @@ import { useState } from "react";
 import AddStudent from "../components/AddStudent";
 import UpdateState from "../components/UpdateState";
 import EnrollStudent from "../components/EnrollStudent";
-import Tabla from "../components/Tabla"
 
 const StudentHome = () => {
   
@@ -25,7 +24,6 @@ const StudentHome = () => {
             <Tab label="Agregar Estudiante" />
             <Tab label="Cambiar Estado del Estudiante" />
             <Tab label="Enrolar Estudiante" />
-            <Tab label="Ejemplo Tabla" />
           </Tabs>
         </Box>
 
@@ -67,21 +65,6 @@ const StudentHome = () => {
              <EnrollStudent />
           </div>
         </TabPanel>
-
-        <TabPanel value={value} index={3}>
-          <br />
-          <div
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-           <Tabla />
-            
-          </div>
-        </TabPanel>
-
 
       </Box>
     </div>

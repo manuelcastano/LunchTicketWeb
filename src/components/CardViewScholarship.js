@@ -15,6 +15,7 @@ function CardViewScholarship(props) {
   };
 
   const eliminar = async ()=>{
+    console.log(name)
     const editScho = await post("/deleteScholarship", {
       name: name
     })
@@ -22,7 +23,8 @@ function CardViewScholarship(props) {
       throw new Error(`Error! status: ${editScho.status}`);
     } else {
       const backResponse = await editScho.json();
-      props.message(backResponse)
+      console.log(backResponse)
+      props.message(backResponse.message)
       props.onDelete();
     }
   }
