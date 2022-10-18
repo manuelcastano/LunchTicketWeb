@@ -1,8 +1,7 @@
 import { style } from '@mui/system';
 import React from 'react';
 import logo from "../imgs/logo.png";
-import { Outlet } from 'react-router-dom';
-import styles from '../css/MySideBar.module.css'; // Import css modules stylesheet as styles
+import styles from '../css/MySideBar.module.css'; 
 
 const MySideBar = (props) => {
 
@@ -26,7 +25,9 @@ const MySideBar = (props) => {
             <button className={styles.button} onClick={()=>{props.onOption(2)}}>
                 Restaurante
             </button>
-            
+            <button className={styles.button} onClick={()=>{props.onOption(3)}}>
+                Administracion
+            </button>
             <button className={styles.button} onClick={()=>{onClick()}}>
                 Cerrar Sesión
             </button>

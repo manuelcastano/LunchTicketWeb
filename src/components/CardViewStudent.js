@@ -1,7 +1,5 @@
-import { Box, Button, Typography, Stack } from "@mui/material";
+import { Box, Typography, Stack } from "@mui/material";
 import React from "react";
-import { BASEURL } from "../constants/Constants";
-import { useState } from "react";
 
 function CardViewStudent(props) {
   return (

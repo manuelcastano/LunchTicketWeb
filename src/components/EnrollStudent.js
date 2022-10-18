@@ -30,7 +30,7 @@ export default function EnrollStudent() {
 
   const listScholarships = async () => {
     const becas = await fetch(
-      BASEURL + "/lunchticket/scholarships",
+      BASEURL + "/scholarships",
       {
         method: "GET"
       }
@@ -48,7 +48,7 @@ export default function EnrollStudent() {
   const searchStudent = async () => {
 
     const resultSearch = await fetch(
-      BASEURL + "/lunchticket/getUserByUsername",
+      BASEURL + "/getUserByUsername",
       {
         method: "POST",
         headers: {
@@ -77,7 +77,7 @@ export default function EnrollStudent() {
   const enRoll = async () => {
 
     const addRoll = await fetch(
-      BASEURL + "/lunchticket/addRole",
+      BASEURL + "/addRole",
       {
         method: "POST",
         headers: {
@@ -102,7 +102,7 @@ export default function EnrollStudent() {
     }
 
     const addScholarShip = await fetch(
-      BASEURL + "/lunchticket/addScholarship",
+      BASEURL + "/addScholarship",
       {
         method: "POST",
         headers: {

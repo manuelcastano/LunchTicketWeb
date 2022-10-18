@@ -2,9 +2,10 @@ import React from "react";
 import MySideBar from "../components/MySideBar";
 import StudentHome from "./StudentHome";
 import styles from '../css/DashBoard.module.css'; // Import css modules stylesheet as styles
-
 import RestaurantHome from "./RestaurantHome";
 import { Box} from "@mui/material";
+import Management from "../components/Management";
+
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +22,8 @@ export default class Dashboard extends React.Component {
       return <StudentHome />;
     }else if (this.state.page === 2) {
       return <RestaurantHome />;
+    }else if (this.state.page === 3) {
+      return <Management />;
     }
     
   }

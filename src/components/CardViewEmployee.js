@@ -17,6 +17,7 @@ function CardViewEmployee(props) {
   console.log(props.employee.username);
 
   const Delete = async () => {
+    let id = props.employee.username;
     let path = BASEURL + "/deleteRestaurantEmployee";
     try {
       const response = await fetch(path, {
