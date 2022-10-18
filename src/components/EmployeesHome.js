@@ -93,20 +93,6 @@ function EmployeesHome() {
             }),
           }
         );
-        const response = await fetch(BASEURL + "/addRestaurantEmployee", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nit: nit,
-            name: employeeName,
-            lastName: employeeLastName,
-            document: employeeId,
-            password: passwordEncrypted,
-          }),
-        });
 
         if (!response.ok) {
           throw new Error(`Error! status: ${response.status}`);
