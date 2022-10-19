@@ -21,6 +21,7 @@ export default function AddScholarship() {
         } else {
             const backResponse = await addScho.json();
             setMessage(backResponse.message)
+            setScholarship("")
             
         }
         listScholarship();
@@ -81,6 +82,7 @@ export default function AddScholarship() {
                         label="Nombre de la beca"
                         variant="outlined"
                         size="small"
+                        value={scholarship}
                         onChange={(e) => {
                             setScholarship(e.target.value)
                         }}

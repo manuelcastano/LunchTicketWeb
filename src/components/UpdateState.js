@@ -31,6 +31,8 @@ export default function AddStudent() {
     } else {
       const backResponse = await desactiveState.json();  
       setMessage(backResponse.message) 
+      setStudent("")
+      setDocument("")
     }
   };
 
@@ -44,17 +46,21 @@ export default function AddStudent() {
     } else {
       const backResponse = await addScholarShip.json();
       setMessage(backResponse.message)
+      setStudent("");
       setShow(false);
+      setDocument("")
     }
   }
 
   const searchStudent = async () => {
+    setMessage("")
     const resultSearch = await  post("/getStudent", {
       id: document
     })
     if (!resultSearch.ok) {
       throw new Error(`Error! status: ${resultSearch.status}`);
     } else {
+    try{
       const backResponse = await resultSearch.json();
       setStudent(backResponse)
       if (backResponse.active === 'N') {
@@ -63,6 +69,11 @@ export default function AddStudent() {
         setBeca(false);
       }
       setShow(true);
+    }catch(err){
+      setMessage("Por favor ingrese un documento valido")
+    }
+
+
     }
   }
   React.useEffect(() => {
@@ -120,6 +131,7 @@ export default function AddStudent() {
             label="Documento"
             variant="outlined"
             size="small"
+            value={document}
             onChange={(e) => {
               setDocument(e.target.value)
             }}

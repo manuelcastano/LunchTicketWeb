@@ -39,14 +39,13 @@ export default function EnrollStudent() {
     } else {
       const tiposbecas = await becas.json();
       setScholarships(tiposbecas);
-      console.log("backResponse is tipos de bacas: ", tiposbecas)
 
     }
   }
 
 
   const searchStudent = async () => {
-
+    
     const resultSearch = await fetch(
       BASEURL + "/getUserByUsername",
       {
@@ -63,13 +62,13 @@ export default function EnrollStudent() {
     if (!resultSearch.ok) {
       throw new Error(`Error! status: ${resultSearch.status}`);
     } else {
-      //Recibir el usuario con un array que contenga sus roles
-      //Cambiar la página con route de acuerdo al rol que tenga
+      try{
       const backResponse = await resultSearch.json();
+      setMessage("")
       setRows([backResponse]);
-      console.log("backResponse is: ", backResponse.username)
-
-
+      }catch(err){
+      setMessage("Por favor ingresa un documento valido")
+      }
     }
 
   }
@@ -93,12 +92,7 @@ export default function EnrollStudent() {
     if (!addRoll.ok) {
       throw new Error(`Error! status: ${addRoll.status}`);
     } else {
-      //Recibir el usuario con un array que contenga sus roles
-      //Cambiar la página con route de acuerdo al rol que tenga
       const backResponse = await addRoll.json();
-      //setdelestado
-      console.log("backResponse is: ", backResponse)
-
     }
 
     const addScholarShip = await fetch(
@@ -118,12 +112,10 @@ export default function EnrollStudent() {
     if (!addScholarShip.ok) {
       throw new Error(`Error! status: ${addScholarShip.status}`);
     } else {
-      //Recibir el usuario con un array que contenga sus roles
-      //Cambiar la página con route de acuerdo al rol que tenga
       const backResponse = await addScholarShip.json();
-      //setdelestado
-      
       setMessage(backResponse.message)
+      setDocument("")
+      setCurrency("")
 
     }
 
@@ -131,7 +123,7 @@ export default function EnrollStudent() {
 
   return (
     <div>
-      <TextField onChange={onDocument} id="standard-basic" label="Documento" variant="standard" />
+      <TextField onChange={onDocument} id="standard-basic" label="Documento" variant="standard"  value ={document}/>
       <Button size="small" onClick={searchStudent}>Buscar Estudiante</Button>
     <Box
       component="form"
@@ -195,7 +187,6 @@ export default function EnrollStudent() {
           <Typography my={5} variant="subtitle1" color={"#BA0606"}>
             {message}
           </Typography>
-      
       </Box>
     </div>
   );

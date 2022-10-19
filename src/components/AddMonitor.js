@@ -47,7 +47,7 @@ export default function AddMonitor() {
         }}
       >
         {miembrosAF.map((option) => {
-          return <CardViewMAF key={option.id} student={option}  onDelete={()=>{getmiembrosAF()}} textresponse={setMessage} />;
+          return <CardViewMAF key={option.id} student={option}  onDelete={()=>{getmiembrosAF()} } textresponse={setMessage}/>;
         })}
       </div>
     );
