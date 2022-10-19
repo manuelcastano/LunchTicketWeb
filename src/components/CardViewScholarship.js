@@ -22,7 +22,7 @@ function CardViewScholarship(props) {
       throw new Error(`Error! status: ${editScho.status}`);
     } else {
       const backResponse = await editScho.json();
-      props.message(backResponse)
+      props.message(backResponse.message)
       props.onDelete();
     }
   }

@@ -3,12 +3,11 @@ import React from "react";
 import { useState } from "react";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { post, get } from '../actions/HttpUtil';
+import { post } from '../actions/HttpUtil';
 import AlertDialog from "./AlertDialog";
 
 function CardViewMAF(props) {
   const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -22,7 +21,7 @@ function CardViewMAF(props) {
       throw new Error(`Error! status: ${deleteMonitor.status}`);
     } else {
       const backResponse = await deleteMonitor.json();
-      setMessage(backResponse);
+      props.textresponse(backResponse.message)
       props.onDelete();
     }
   }

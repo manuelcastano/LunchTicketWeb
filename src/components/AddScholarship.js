@@ -10,7 +10,6 @@ export default function AddScholarship() {
 
     const [scholarship, setScholarship] = useState("");
     const [message, setMessage] = useState();
-    const [result, setResult] = useState("");
     const [listScho,setListScho] =useState([]);
 
     const addScholarship = async () => {
@@ -21,7 +20,8 @@ export default function AddScholarship() {
             throw new Error(`Error! status: ${addScho.status}`);
         } else {
             const backResponse = await addScho.json();
-            setResult(backResponse.message)
+            setMessage(backResponse.message)
+            setScholarship("")
             
         }
         listScholarship();
@@ -82,6 +82,7 @@ export default function AddScholarship() {
                         label="Nombre de la beca"
                         variant="outlined"
                         size="small"
+                        value={scholarship}
                         onChange={(e) => {
                             setScholarship(e.target.value)
                         }}
@@ -93,7 +94,7 @@ export default function AddScholarship() {
             </Box>
            
             <Typography my={5} variant="subtitle1" color={"#BA0606"}>
-                {result}
+                {message}
             </Typography>
             
             <Box>

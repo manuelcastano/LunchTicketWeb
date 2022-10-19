@@ -37,7 +37,6 @@ function CardViewEmployee(props) {
         setDeleted(true);
       }
     } catch (err) {
-      console.log(err.message);
     }
   };
 

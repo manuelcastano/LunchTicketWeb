@@ -21,6 +21,7 @@ export default function AddMonitor() {
     getmiembrosAF()
   }, []);
 
+  
   const getmiembrosAF = async () => {
     const listMAF = await get("/membersAf")
      if (!listMAF.ok) {
@@ -46,13 +47,14 @@ export default function AddMonitor() {
         }}
       >
         {miembrosAF.map((option) => {
-          return <CardViewMAF key={option.id} student={option}  onDelete={()=>{getmiembrosAF()}} />;
+          return <CardViewMAF key={option.id} student={option}  onDelete={()=>{getmiembrosAF()} } textresponse={setMessage}/>;
         })}
       </div>
     );
   };
 
   const AddRoleMonitor = async () => {
+    setMessage("")
     const addRoleMAF = await post("/addRole", {
       document: document,
       userTypeId:3
@@ -61,13 +63,16 @@ export default function AddMonitor() {
       throw new Error(`Error! status: ${addRoleMAF.status}`);
     } else {
       const backResponse = await addRoleMAF.json();
-      setMessage(backResponse)
+      setMessage(backResponse.message)
+      setShow(false)
+      getmiembrosAF();
     }
    
   };
 
   const searchStudent = async () => {
-    const resultSearch = await  post("/getStudent", {
+    setMessage("");
+    const resultSearch = await  post("/getUserByUsername", {
       id: document
     })
     if (!resultSearch.ok) {
@@ -75,7 +80,7 @@ export default function AddMonitor() {
     } else {
       try{
         const backResponse = await resultSearch.json();
-        setMessage("")
+        
         setStudent(backResponse);   
         setShow(true);
         setShowForms(false);
@@ -103,8 +108,8 @@ export default function AddMonitor() {
           throw new Error(`Error! status: ${addRoleMAF.status}`);
         } else {
           setShowForms(false)
-          setMessage("Monitor añadido con exito")
-          setDocument("")
+          const backResponse = await addRoleMAF.json();
+          setMessage(backResponse.message)
           getmiembrosAF()
          
         }      
@@ -159,7 +164,7 @@ export default function AddMonitor() {
               id="standard-read-only-input"
               label="Nombres"
               defaultValue="   "
-              value={student && student.userID.pers_name}
+              value={student && student.pers_name}
               InputProps={{
                 readOnly: true,
               }}
@@ -171,7 +176,7 @@ export default function AddMonitor() {
               id="standard-read-only-input"
               label="Apellidos"
               defaultValue="  "
-              value={student && student.userID.pers_lastname}
+              value={student && student.pers_lastname}
               InputProps={{
                 readOnly: true,
               }}

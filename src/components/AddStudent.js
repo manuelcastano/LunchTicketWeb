@@ -81,6 +81,11 @@ export default function AddStudent() {
     } else {
       const backResponse = await createUser.json();
       setMessage(backResponse.message)
+      setCodigo("")
+      setName("")
+      setDocument("")
+      setLastName("")
+      setCurrency("")
     }
     getStudents()
   };
@@ -132,6 +137,7 @@ export default function AddStudent() {
             label="Codigo"
             variant="outlined"
             size="small"
+            value={codigo}
             onChange={(e) => {
               setCodigo(e.target.value)
             }}
@@ -144,7 +150,7 @@ export default function AddStudent() {
             label="Documento"
             variant="outlined"
             size="small"
-
+            value={document}
             onChange={(e) => {
               setDocument(e.target.value)
             }}
@@ -159,6 +165,7 @@ export default function AddStudent() {
             label="Nombres"
             variant="outlined"
             size="small"
+            value={name}
             onChange={(e) => {
               setName(e.target.value)
             }}
@@ -171,7 +178,7 @@ export default function AddStudent() {
             label="Apellidos"
             variant="outlined"
             size="small"
-
+            value={lastname}
             onChange={(e) => {
               setLastName(e.target.value)
             }}
