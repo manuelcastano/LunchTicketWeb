@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/LunchTicketWeb/precache-manifest.b7fead93dba33d94e15db3f2ed7f4e21.js"
+  "/LunchTicketWeb/precache-manifest.a85fb562066f0b579d2dea243a638486.js"
 );
 
 workbox.clientsClaim();
