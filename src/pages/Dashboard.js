@@ -16,9 +16,10 @@ export default class Dashboard extends React.Component {
   }
 
   content() {
-    if (this.state.page === 0) {
-      console.log("Cerrando sesion");
-    } else if (this.state.page === 1) {
+    // if (this.state.page === 0) {
+    //   console.log("Cerrando sesion");
+    // } else
+    if (this.state.page === 1) {
       return <StudentHome />;
     }else if (this.state.page === 2) {
       return <RestaurantHome />;
