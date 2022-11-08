@@ -14,7 +14,7 @@ const MySideBar = (props) => {
   };
 
   const goHome = () => {
-    navigate("/LunchTicketWeb");
+    navigate("/dashboard");
   };
     return (
       
