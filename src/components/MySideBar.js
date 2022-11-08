@@ -9,8 +9,9 @@ const MySideBar = (props) => {
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate("");
     console.log("cerrar");
+    navigate("/");
+  
     localStorage.clear();
   };
 
