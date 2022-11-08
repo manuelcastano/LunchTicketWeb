@@ -13,10 +13,10 @@ function App() {
     <div>
       <Routes>
         <Route index element={<Login />} />
-        <Route exact={true} path="#/dashboard" element={<Dashboard />} />
-        <Route exact={true} path="#/notAllowed" element={<NotAllowed />} />
+        <Route exact={true} path="/dashboard" element={<Dashboard />} />
+        <Route exact={true} path="/notAllowed" element={<NotAllowed />} />
         <Route
-          path="#/employees"
+          path="/employees"
           state={{restaurant}}
           restaurant={restaurant}
           element={<EmployeesHome />}
