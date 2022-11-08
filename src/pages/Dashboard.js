@@ -18,7 +18,6 @@ export default class Dashboard extends React.Component {
   content() {
     if (this.state.page === 0) {
       console.log("Cerrando sesion");
-      window.location.href = "/";
     } else if (this.state.page === 1) {
       return <StudentHome />;
     }else if (this.state.page === 2) {

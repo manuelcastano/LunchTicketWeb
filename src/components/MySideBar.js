@@ -2,15 +2,20 @@ import { style } from '@mui/system';
 import React from 'react';
 import logo from "../imgs/logo.png";
 import styles from '../css/MySideBar.module.css'; 
+import { useNavigate } from "react-router-dom";
 
 const MySideBar = (props) => {
 
+  const navigate = useNavigate();
+
   const onClick = () => {
-    props.onOption(0);
+    goHome;
     localStorage.clear();
   };
 
-
+  const goHome = () => {
+    navigate("/");
+  };
     return (
       
       <div className={styles.container}>
