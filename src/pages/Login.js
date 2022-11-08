@@ -106,7 +106,7 @@ function Login() {
             user: result,
             roles: backResponse,
           };
-          // localStorage.setItem("account", JSON.stringify(account));
+          localStorage.setItem("account", JSON.stringify(account));
 
           if (backResponse.length === 0) {
             navigateDenied();
