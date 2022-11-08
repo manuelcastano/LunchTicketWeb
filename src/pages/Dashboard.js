@@ -29,23 +29,23 @@ export default class Dashboard extends React.Component {
     
   }
 
-  componentDidMount() {
-    const navigate = useNavigate();
-    let account = JSON.parse(localStorage.getItem("account"));
-    if (account != null) {
-      //console.log(account.user.persName);
-      const rolesAllowed = account.roles.find(
-        (roles) => roles.id === 3 || roles.id === 4
-      );
-      if (rolesAllowed != null) {
-        //console.log("dentro de allowed");
-        navigate("/dashboard");
-      } else {
-        navigate("/notAllowed");;
-      }
-      return;
-    }
-  }
+  // componentDidMount() {
+  //   const navigate = useNavigate();
+  //   let account = JSON.parse(localStorage.getItem("account"));
+  //   if (account != null) {
+  //     //console.log(account.user.persName);
+  //     const rolesAllowed = account.roles.find(
+  //       (roles) => roles.id === 3 || roles.id === 4
+  //     );
+  //     if (rolesAllowed != null) {
+  //       //console.log("dentro de allowed");
+  //       navigate("/dashboard");
+  //     } else {
+  //       navigate("/notAllowed");;
+  //     }
+  //     return;
+  //   }
+  // }
 
   render() {
     return (

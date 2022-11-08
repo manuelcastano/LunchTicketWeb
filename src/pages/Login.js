@@ -17,19 +17,19 @@ function Login() {
   let account = JSON.parse(localStorage.getItem("account"));
 
   const navigate = useNavigate();
-  if (account != null) {
-    //console.log(account.user.persName);
-    const rolesAllowed = account.roles.find(
-      (roles) => roles.id === 3 || roles.id === 4
-    );
-    if (rolesAllowed != null) {
-      //console.log("dentro de allowed");
-      navigate("/dashboard");
-    } else {
-      navigate("/notAllowed");;
-    }
-    return;
-  }
+  // if (account != null) {
+  //   //console.log(account.user.persName);
+  //   const rolesAllowed = account.roles.find(
+  //     (roles) => roles.id === 3 || roles.id === 4
+  //   );
+  //   if (rolesAllowed != null) {
+  //     //console.log("dentro de allowed");
+  //     navigate("/dashboard");
+  //   } else {
+  //     navigate("/notAllowed");;
+  //   }
+  //   return;
+  // }
 
   
   const navigateApproved = () => {
@@ -106,7 +106,7 @@ function Login() {
             user: result,
             roles: backResponse,
           };
-          localStorage.setItem("account", JSON.stringify(account));
+          // localStorage.setItem("account", JSON.stringify(account));
 
           if (backResponse.length === 0) {
             navigateDenied();
