@@ -31,7 +31,7 @@ const MySideBar = (props) => {
             <button className={styles.button} onClick={()=>{props.onOption(3)}}>
                 Administracion
             </button>
-            <button className={styles.button} onClick={onClick()}>
+            <button className={styles.button} onClick={onClick}>
                 Cerrar Sesión
             </button>
 
