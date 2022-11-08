@@ -7,7 +7,9 @@ import {BrowserRouter as Router} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Router>
+    <Router basename="/LunchTicketWeb">
     <App />
     </Router>
 );
+
+export default root;
