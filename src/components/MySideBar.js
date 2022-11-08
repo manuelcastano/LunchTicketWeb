@@ -9,13 +9,10 @@ const MySideBar = (props) => {
   const navigate = useNavigate();
 
   const onClick = () => {
-    goHome();
+    navigate("");
     localStorage.clear();
   };
 
-  const goHome = () => {
-    navigate("/dashboard");
-  };
     return (
       
       <div className={styles.container}>
