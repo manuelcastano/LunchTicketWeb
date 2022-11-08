@@ -11,3 +11,5 @@ root.render(
     <App />
     </Router>
 );
+
+export default root;
