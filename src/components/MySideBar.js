@@ -9,7 +9,7 @@ const MySideBar = (props) => {
   const navigate = useNavigate();
 
   const onClick = () => {
-    goHome;
+    goHome();
     localStorage.clear();
   };
 
