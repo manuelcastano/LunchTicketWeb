@@ -16,6 +16,7 @@ function Login() {
   const [password, setPassword] = useState("");
   let account = JSON.parse(localStorage.getItem("account"));
 
+  const navigate = useNavigate();
   if (account != null) {
     //console.log(account.user.persName);
     const rolesAllowed = account.roles.find(
@@ -23,16 +24,14 @@ function Login() {
     );
     if (rolesAllowed != null) {
       //console.log("dentro de allowed");
-      window.location.href = "/dashboard";
+      navigate("/dashboard");
     } else {
-      window.location.href = "/notAllowed";
+      navigate("/notAllowed");;
     }
     return;
   }
 
   
-
-  const navigate = useNavigate();
   const navigateApproved = () => {
     navigate("/dashboard", { replace: true });
   };
@@ -107,7 +106,7 @@ function Login() {
             user: result,
             roles: backResponse,
           };
-          localStorage.setItem("account", JSON.stringify(account));
+          // localStorage.setItem("account", JSON.stringify(account));
 
           if (backResponse.length === 0) {
             navigateDenied();

@@ -5,7 +5,7 @@ import styles from '../css/DashBoard.module.css'; // Import css modules styleshe
 import RestaurantHome from "./RestaurantHome";
 import { Box} from "@mui/material";
 import Management from "../components/Management";
-import Login from "./Login";
+import { useNavigate } from "react-router-dom";
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -29,22 +29,23 @@ export default class Dashboard extends React.Component {
     
   }
 
-  // componentDidMount() {
-  //   let account = JSON.parse(localStorage.getItem("account"));
-  //   if (account != null) {
-  //     //console.log(account.user.persName);
-  //     const rolesAllowed = account.roles.find(
-  //       (roles) => roles.id === 3 || roles.id === 4
-  //     );
-  //     if (rolesAllowed != null) {
-  //     } else {
-  //       window.location.href = "/";
-  //     }
-  //   }
-  //   else{
-  //     window.location.href = "/";
-  //   }
-  // }
+  componentDidMount() {
+    const navigate = useNavigate();
+    let account = JSON.parse(localStorage.getItem("account"));
+    if (account != null) {
+      //console.log(account.user.persName);
+      const rolesAllowed = account.roles.find(
+        (roles) => roles.id === 3 || roles.id === 4
+      );
+      if (rolesAllowed != null) {
+        //console.log("dentro de allowed");
+        navigate("/dashboard");
+      } else {
+        navigate("/notAllowed");;
+      }
+      return;
+    }
+  }
 
   render() {
     return (
