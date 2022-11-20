@@ -5,7 +5,7 @@ import styles from '../css/DashBoard.module.css'; // Import css modules styleshe
 import RestaurantHome from "./RestaurantHome";
 import { Box} from "@mui/material";
 import Management from "../components/Management";
-import Login from "./Login";
+import { useNavigate } from "react-router-dom";
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -16,10 +16,10 @@ export default class Dashboard extends React.Component {
   }
 
   content() {
-    if (this.state.page === 0) {
-      console.log("Cerrando sesion");
-      window.location.href = "/";
-    } else if (this.state.page === 1) {
+    // if (this.state.page === 0) {
+    //   console.log("Cerrando sesion");
+    // } else
+    if (this.state.page === 1) {
       return <StudentHome />;
     }else if (this.state.page === 2) {
       return <RestaurantHome />;
@@ -30,6 +30,7 @@ export default class Dashboard extends React.Component {
   }
 
   // componentDidMount() {
+  //   const navigate = useNavigate();
   //   let account = JSON.parse(localStorage.getItem("account"));
   //   if (account != null) {
   //     //console.log(account.user.persName);
@@ -37,12 +38,12 @@ export default class Dashboard extends React.Component {
   //       (roles) => roles.id === 3 || roles.id === 4
   //     );
   //     if (rolesAllowed != null) {
+  //       //console.log("dentro de allowed");
+  //       navigate("/dashboard");
   //     } else {
-  //       window.location.href = "/";
+  //       navigate("/notAllowed");;
   //     }
-  //   }
-  //   else{
-  //     window.location.href = "/";
+  //     return;
   //   }
   // }
 

@@ -2,14 +2,17 @@ import { style } from '@mui/system';
 import React from 'react';
 import logo from "../imgs/logo.png";
 import styles from '../css/MySideBar.module.css'; 
+import { useNavigate } from "react-router-dom";
 
 const MySideBar = (props) => {
 
+  const navigate = useNavigate();
+
   const onClick = () => {
-    props.onOption(0);
+    navigate("/");
+  
     localStorage.clear();
   };
-
 
     return (
       
@@ -28,7 +31,7 @@ const MySideBar = (props) => {
             <button className={styles.button} onClick={()=>{props.onOption(3)}}>
                 Administracion
             </button>
-            <button className={styles.button} onClick={()=>{onClick()}}>
+            <button className={styles.button} onClick={onClick}>
                 Cerrar Sesión
             </button>
 
