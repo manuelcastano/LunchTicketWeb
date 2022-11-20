@@ -8,7 +8,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export default function ResponsiveDatePickers(props) {
 
-  const [value, setValue] = React.useState(dayjs());
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -19,10 +18,9 @@ export default function ResponsiveDatePickers(props) {
           label={props.title}
           openTo="year"
           views={['year', 'month', 'day']}
-          value={value}
+          value={props.value}
           onChange={(newValue) => {
-            setValue(newValue);
-            props.setStartDate(newValue)
+            props.date(newValue);
           }}
           renderInput={(params) => <TextField {...params} />}
         />
