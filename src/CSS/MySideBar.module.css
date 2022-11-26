@@ -3,24 +3,34 @@
     flex-direction:column;
     width:200px;
     overflow: scroll initial;
-    background-color:#F6f6f6;
+    background-color:rgb(33, 115, 246);
     position: fixed;
     top:0;
     left:0;
     bottom: 0;
-    gap: 5px;
+    gap: 0px;
 }
 
+.container2{
+    display: flex;
+    flex-direction:column;
+    background-color: white;
+    width:200px;
+    align-items: center;
+}
 .logo{
-    width: 200px;
+    width: 150px;
+    padding: 20px;
 }
 
 .button{
-    background-color: #F4f4f4;
-    color: black;
-    border: 0px;
+    background-color:rgb(33, 115, 246);
+    color: white;
+    border-width: 1.5px;
+    border-color: black;
+    padding: 5px;
 }
 
 .button:hover{
-    background-color: blueviolet;
+    background-color:rgb(61, 130, 241);
 }

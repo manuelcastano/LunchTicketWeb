@@ -24,10 +24,10 @@ export default function AddStudent() {
     setCurrency(event.target.value);
   };
 
-  useEffect(() => {
-    listScholarships()
-    getStudents()
-  }, []);
+  // useEffect(() => {
+  //   listScholarships()
+  //   getStudents()
+  // }, []);
 
   const listScholarships = async () => {
     const becas = await fetch(
