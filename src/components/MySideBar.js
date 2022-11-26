@@ -17,10 +17,9 @@ const MySideBar = (props) => {
     return (
       
       <div className={styles.container}>
-
-
-          <img className={style.logo} src={logo}/>
-        
+        <div className={styles.container2}>
+        <img className={styles.logo} src={logo}/>
+        </div>
             <button className={styles.button} onClick={()=>{props.onOption(1)}}>
                 Estudiante
             </button>
